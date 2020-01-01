@@ -1,4 +1,4 @@
-﻿body {
+﻿.myTitle {
     text-align:center;
 }
 .center{
@@ -18,7 +18,7 @@ h1{
 .custom-item{
     padding:5px;
 }
-.collapse-navitem{
+.text-left {
     text-align:left;
 }
 footer{
@@ -26,7 +26,9 @@ footer{
     width:100%;
     position:absolute
 }
-
+.custom-select {
+    width:50%;
+}
 .bg {
     /* The image used */
     background-image: url('https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg');
