@@ -1,10 +1,10 @@
-﻿.myTitle {
+﻿body {
     text-align:center;
 }
 .center{
     padding:100px;
 }
-.title-white{
+h1{
     color:white;
 }
 .bodylink {
@@ -18,7 +18,7 @@
 .custom-item{
     padding:5px;
 }
-.text-left {
+.collapse-navitem{
     text-align:left;
 }
 footer{
@@ -26,9 +26,7 @@ footer{
     width:100%;
     position:absolute
 }
-.custom-select {
-    width:50%;
-}
+
 .bg {
     /* The image used */
     background-image: url('https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg');
@@ -38,12 +36,5 @@ footer{
     background-position: center;
     background-repeat: no-repeat;
     background-size:auto;
-    opacity:0.4;
-}
-.gridview {
-    padding:10px;
-}
-#CatLabel{
-    font-weight:bold;
-    font-size:16px;
+
 }
