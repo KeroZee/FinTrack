@@ -3,6 +3,7 @@ using FinTrack.DAL;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace FinTrack
     public partial class Track : System.Web.UI.Page
     {
         List<Expense> expList;
+        List<Expense> dateRangeList;
         DateTime now = DateTime.Today;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -86,10 +88,11 @@ namespace FinTrack
         {
 
             GridViewRow row = gvExpense.SelectedRow;
+            Session["SSID"] = row.Cells[0].Text;
             Session["SSCategory"] = row.Cells[1].Text;
             Session["SSDescription"] = row.Cells[2].Text;
             Session["SSCOst"] = row.Cells[3].Text;
-            Session["SSDate"] = row.Cells[4].Text;
+            Response.Redirect("UpdateTrack.aspx");
             //TODO : Redirect user to Update page to update whatever is needed.
         }
 
@@ -113,35 +116,19 @@ namespace FinTrack
 
         protected void gvExpense_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            Expense exp = new Expense();
-            exp.GetAllExpense();
-            RefreshGridView();
         }
 
         protected void gvExpense_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString);
-            SqlCommand cmd = null;
-            Expense exp = new Expense();
+        }
 
-            int rowIndex = e.RowIndex;
-            int sid = Convert.ToInt16(gvExpense.Rows[rowIndex].Cells[0].Text);
-
-            DropDownList category = (DropDownList)gvExpense.Rows[rowIndex].Cells[1].FindControl("ddlCat");
-            TextBox desc = (TextBox)gvExpense.Rows[rowIndex].Cells[2].Controls[0];
-            TextBox cost = (TextBox)gvExpense.Rows[rowIndex].Cells[3].Controls[0];
-
-            con.Open();
-            cmd = new SqlCommand("UPDATE Expense SET category=@paraCategory, price=@paraPrice, description=@paradesc WHERE id=@id", con);
-            cmd.Parameters.AddWithValue("@paraDesc", desc.Text);
-            cmd.Parameters.AddWithValue("@paraCat", category.Text);
-            cmd.Parameters.AddWithValue("@paraCost", cost.Text);
-            cmd.Parameters.AddWithValue("@id", sid);
-            cmd.ExecuteNonQuery();
-            con.Close();
-
-            gvExpense.EditIndex = -1;
-            RefreshGridView();
+        protected void btnFilter_Click(object sender, EventArgs e)
+        {
+            ExpenseDAO dao = new ExpenseDAO();
+            dateRangeList = dao.FilterByDate(txtStartDate.Text, txtEndDate.Text);
+            gvExpense.Visible = true;
+            gvExpense.DataSource = dateRangeList;
+            gvExpense.DataBind();
         }
     }
 }

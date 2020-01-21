@@ -6,7 +6,7 @@
             <div class="col-4">
             </div>
             <div class="col-4">
-                <h1 class="center">Your One-stop
+                <h1 class="center title-white">Your One-stop
                 <br />
                     <span class="text-primary">Personal Finance</span><br />
                     Platform</h1>

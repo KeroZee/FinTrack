@@ -4,7 +4,7 @@
 .center{
     padding:100px;
 }
-h1{
+.title-white{
     color:white;
 }
 .bodylink {
@@ -38,5 +38,12 @@ footer{
     background-position: center;
     background-repeat: no-repeat;
     background-size:auto;
-
+    opacity:0.4;
+}
+.gridview {
+    padding:10px;
+}
+#CatLabel{
+    font-weight:bold;
+    font-size:16px;
 }

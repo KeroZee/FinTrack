@@ -2,69 +2,93 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-
-
-    <form id="form1" runat="server" class="md-form">
-        <table class="w-100">
-            <tr>
-                <td style="width: 183px">Description of Expense :</td>
-                <td>    
-                    <asp:TextBox ID="txtDesc" runat="server"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 183px">Category :</td>
-                <td>
-                    <asp:DropDownList ID="ddlCat" class="browser-default custom-select ddl-custom" style="width:183px" runat="server">
+    <body>
+        <form id="form1" runat="server" class="text-center border border-light p-5">
+            <h1>Your Expense Tracker!</h1>
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-sm-3">
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <span class="d-block">
+                        <label id="CatLabel">Category</label>
+                    </span>
+                   
+                    <asp:DropDownList ID="ddlCat" class="form-control mb-4" runat="server">
                         <asp:ListItem Value="-1">-- Select --</asp:ListItem>
                         <asp:ListItem>Food</asp:ListItem>
                         <asp:ListItem>Transport</asp:ListItem>
                         <asp:ListItem>Miscellaneous</asp:ListItem>
                     </asp:DropDownList>
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 183px; height: 26px">Cost :</td>
-                <td style="height: 26px">
-                    <asp:TextBox ID="txtCost" runat="server"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 183px; height: 26px"></td>
-                <td style="height: 26px">
+                    <asp:TextBox ID="txtDesc" class="form-control mb-4" runat="server" rows="4" placeholder="Description of Expense" TextMode="MultiLine"></asp:TextBox>
+                    <asp:TextBox ID="txtCost" class="form-control mb-4" runat="server" placeholder="Cost"></asp:TextBox>
                     <asp:Label ID="lblError" runat="server" BackColor="White" BorderColor="Red" ForeColor="Red"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 183px">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td style="width: 183px">&nbsp;</td>
-                <td>
-                    <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" />
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 183px; height: 26px;"></td>
-                <td style="height: 26px"></td>
-            </tr>
-            <tr>
-                <td style="width: 183px">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
-        <br />
-        <asp:GridView ID="gvExpense" runat="server" AutoGenerateColumns="False" AllowSorting="True" OnRowDeleting="gvExpense_RowDeleting" OnRowEditing="gvExpense_RowEditing" OnRowUpdating="gvExpense_RowUpdating" OnSelectedIndexChanged="gvExpense_SelectedIndexChanged">
-            <columns>
-                <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True" />
-                <asp:BoundField DataField="Category" HeaderText="Category" />
-                <asp:BoundField DataField="Description" HeaderText="Description" />
-                <asp:BoundField DataField="Cost" DataFormatString="{0:C2}" HeaderText="Cost" />
-                <asp:BoundField DataField="Date" DataFormatString="{0:d}" HeaderText="Date" ReadOnly="True" />
-                <asp:CommandField DeleteText="X" ShowDeleteButton="True" />
-                <asp:CommandField ShowSelectButton="True" />
-            </columns>
-        </asp:GridView>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                            <asp:Button ID="btnSave" class="form-control mb-2 align-self-md-center" runat="server" placeholder="Add Expense" OnClick="btnSave_Click" Text="Save" />
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-3">
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-10">
+                            <div class="card d-none d-lg-block" style="padding: 10px;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="txtStartDate" TextMode="Date" class="form-control mb-4" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="txtEndDate" TextMode="Date" class="form-control mb-4" runat="server" ></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <asp:Button ID="btnFilter" runat="server" class="form-control mb-4" OnClick="btnFilter_Click" Text="Filter" />
+                                    </div>
+                                    <div class="col-md-2">
+                                    </div>
+                                </div>  
+                                <div class="row">
+                                    <div class="col">
+                                    </div>
+                                    <div class="col">
+                                        <br />
+                                        <asp:GridView ID="gvExpense" HorizontalAlign="Center" runat="server" AutoGenerateColumns="False" AllowSorting="True" OnRowDeleting="gvExpense_RowDeleting" OnRowEditing="gvExpense_RowEditing" OnRowUpdating="gvExpense_RowUpdating" OnSelectedIndexChanged="gvExpense_SelectedIndexChanged" Height="213px" Width="844px">
+                                            <columns>
+                                                <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True" />
+                                                <asp:BoundField DataField="Category" HeaderText="Category" />
+                                                <asp:BoundField DataField="Description" HeaderText="Description" />
+                                                <asp:BoundField DataField="Cost" DataFormatString="{0:C2}" HeaderText="Cost" />
+                                                <asp:BoundField DataField="Date" DataFormatString="{0:d}" HeaderText="Date" ReadOnly="True" />
+                                                <asp:CommandField ShowDeleteButton="True" />
+                                                <asp:CommandField ShowSelectButton="True" />
+                                            </columns>
+                                        </asp:GridView>
+                                    </div>
+                                    <div class="col">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </body>
     </form>
+        </form>
 </asp:Content>

@@ -65,7 +65,8 @@ namespace FinTrack.DAL
             sqlCmd = new SqlCommand(sqlStmt, myConn);
 
             // Step 3 : Add each parameterised variable with value
-            //sqlCmd.Parameters.AddWithValue("@paraId", exp.Id);
+            //TODO: implement userid into each expense entry
+            //sqlCmd.Parameters.AddWithValue("@paraDesc", user.userid);
             sqlCmd.Parameters.AddWithValue("@paraDesc", exp.Description);
             sqlCmd.Parameters.AddWithValue("@paraCat", exp.Category);
             sqlCmd.Parameters.AddWithValue("@paraCost", exp.Cost);
@@ -83,7 +84,7 @@ namespace FinTrack.DAL
         }
         public int Update(Expense exp)
         {
-            int result = 0;
+            int result = 1;
             SqlCommand sqlCmd = new SqlCommand();
 
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
@@ -111,6 +112,40 @@ namespace FinTrack.DAL
             myConn.Close();
 
             return result;
+        }
+
+        public List<Expense> FilterByDate(string startDate, string endDate)
+        {
+            //Step 1 -  Define a connection to the database by getting
+            //          the connection string from web.config
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            //Step 2 -  Create a DataAdapter to retrieve data from the database table
+            string sqlStmt = "Select * from Expense WHERE date BETWEEN '" + startDate + "'and'" + endDate + "'";
+            SqlDataAdapter da = new SqlDataAdapter(sqlStmt, myConn);
+
+            //Step 3 -  Create a DataSet to store the data to be retrieved
+            DataSet ds = new DataSet();
+
+            //Step 4 -  Use the DataAdapter to fill the DataSet with data retrieved
+            da.Fill(ds);
+
+            //Step 5 -  Read data from DataSet to List
+            List<Expense> expenseList = new List<Expense>();
+            int rec_cnt = ds.Tables[0].Rows.Count;
+            for (int i = 0; i < rec_cnt; i++)
+            {
+                DataRow row = ds.Tables[0].Rows[i];  // Sql command returns only one record
+                int expenseId = Convert.ToInt16(row["id"].ToString());
+                string description = row["description"].ToString();
+                DateTime DatePosted = Convert.ToDateTime(row["date"].ToString());
+                string expenseCategory = row["category"].ToString();
+                double expenseCost = Convert.ToDouble(row["price"].ToString());
+                Expense obj = new Expense(expenseId, description, expenseCategory, expenseCost, DatePosted);
+                expenseList.Add(obj);
+            }
+            return expenseList;
         }
     }
 }

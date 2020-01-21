@@ -220,6 +220,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Track.aspx" />
+    <Content Include="UpdateTrack.aspx" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -259,6 +260,13 @@
     </Compile>
     <Compile Include="Track.aspx.designer.cs">
       <DependentUpon>Track.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateTrack.aspx.cs">
+      <DependentUpon>UpdateTrack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateTrack.aspx.designer.cs">
+      <DependentUpon>UpdateTrack.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

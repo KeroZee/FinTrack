@@ -40,5 +40,11 @@ namespace FinTrack.BLL
             int result = dao.Insert(this);
             return result;
         }
+        public int UpdateExpense()
+        {
+            ExpenseDAO dao = new ExpenseDAO();
+            int result = dao.Update(this);
+            return result;
+        }
     }
 }
