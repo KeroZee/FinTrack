@@ -2,23 +2,23 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <form id="form1" runat="server">
-     <div class="container h-100">
-      <div class="d-flex justify-content-center h-100">
-        <div class="searchbar">
-          <input class="searchinput" type="text" name="" placeholder="Search for a question...">
-          <a href="AskSearch.aspx" class="searchicon"><i class="fas fa-search">
-            
-            </i></a>
-        </div>
-      </div>
-    </div>
-         <button type="button" class="btn btn-primary btn-lg btn-block" id="postbutton" onclick="window.location.href = 'AskCreate.aspx';">
-             Ask a Question
-        
-         </button>
+        <div class="container h-100">
+            <div class="d-flex justify-content-center h-100">
+                <div class="searchbar">
 
-         <asp:Repeater ID="PostRepeater" runat="server">
-             <itemtemplate>
+                   
+                    <asp:TextBox ID="TbSearch" runat="server" CssClass="searchinput" placeholder="Search for a question..."></asp:TextBox>
+                    <asp:LinkButton runat="server" ID="LbtnSearch" OnClick="LbtnSearch_Click" CssClass="searchicon"><i class="fas fa-search"></asp:LinkButton></i>
+
+                </div>
+            </div>
+        </div>
+         
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="postbutton" onclick="window.location.href = 'AskCreate.aspx';">
+            Ask a Question</button>
+
+        <asp:Repeater ID="PostRepeater" runat="server">
+            <itemtemplate>
                 <div class="card">
                     <h5 class="card-header">
                     <b>[<%# Eval("category")%>]</b> - <asp:LinkButton ID="LbTitle" Text='<%# Eval("title")%>' CommandName='<%# Eval("id")%>' runat="server" OnClick="LbTitle_Click"></asp:LinkButton></h5>
@@ -30,93 +30,102 @@
                     </div>
                 </div> 
             </itemtemplate>
-         </asp:Repeater>
-         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Post]"></asp:SqlDataSource>
+        </asp:Repeater>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Post]"></asp:SqlDataSource>
 
-<style>
+        <style>
+            a {
+                text-decoration: none;
+                color: black;
+            }
 
-    <style>
-        a {
-            text-decoration: none;
-            color: black;
-        }
+            .card-title {
+                margin-top: -10px;
+            }
 
-        .card {
-            width: 50%;
-            margin: auto;
-            margin-bottom: 10px;
-            text-align: left;
-            margin-top: 20px;
-        }
+            .card {
+                width: 50%;
+                margin: auto;
+                margin-bottom: 10px;
+                text-align: left;
+            }
 
-        .usertitle {
-            display: inline-block;
-        }
+            #postbutton {
+                width: 50%;
+                margin: auto;
+                margin-bottom: 30px;
+                border-radius: 8px;
+            }
 
-        .usericon {
-            display: inline-flex;
-            height: 28px;
-            width: 28px;
-            border-radius: 50%;
-            text-decoration: none;
-            justify-content: center;
-            align-items: center;
-            background-color: darkgray;
-            cursor: pointer;
-            color: black;
-            margin-right: 10px;
-        }
+            .usertitle {
+                display: inline-block;
+            }
 
-        .ratingsicon {
-            display: inline-flex;
-            height: 25px;
-            width: 25px;
-            justify-content: center;
-            align-items: center;
-        }
+            .ratingsicon {
+                display: inline-flex;
+                height: 25px;
+                width: 25px;
+                justify-content: center;
+                align-items: center;
+            }
 
-        .searchbar {
-            margin: auto;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            height: 60px;
-            background-color: cornflowerblue;
-            border-radius: 8px;
-            padding: 10px;
-        }
+            .usericon {
+                display: inline-flex;
+                height: 28px;
+                width: 28px;
+                border-radius: 50%;
+                text-decoration: none;
+                justify-content: center;
+                align-items: center;
+                background-color: darkgray;
+                cursor: pointer;
+                color: black;
+                margin-right: 10px;
+            }
 
-        ::placeholder {
-            color: white;
-        }
+            .searchbar {
+                margin-bottom: auto;
+                margin: auto;
+                margin-top: 80px;
+                margin-bottom: 50px;
+                height: 60px;
+                background-color: cornflowerblue;
+                border-radius: 8px;
+                padding: 10px;
+            }
 
-        .searchinput {
-            color: white;
-            border: 0;
-            outline: 0;
-            width: 450px;
-            background: none;
-            padding: 0 10px;
-            caret-color: red;
-            line-height: 40px;
-        }
+            ::placeholder {
+                color: white;
+            }
 
-        .searchbar:hover > .search_icon {
-            background: white;
-            color: grey;
-        }
+            .searchinput {
+                color: white;
+                border: 0;
+                outline: 0;
+                width: 450px;
+                background: none;
+                padding: 0 10px;
+                caret-color: red;
+                line-height: 40px;
+            }
 
-        .searchicon {
-            height: 40px;
-            width: 40px;
-            float: right;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            background-color: dimgray;
-        }
-    </style>
-         </form>
+            .searchbar:hover > .search_icon {
+                background: white;
+                color: grey;
+            }
+
+            .searchicon {
+                height: 40px;
+                width: 40px;
+                float: right;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                color: white;
+                text-decoration: none;
+                background-color: dimgray;
+            }
+        </style>
+    </form>
 </asp:Content>

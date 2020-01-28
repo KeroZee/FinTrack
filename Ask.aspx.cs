@@ -43,5 +43,11 @@ namespace FinTrack
             Session["SId"] = b.CommandName;
             Response.Redirect("AskPost.aspx");
         }
+
+        protected void LbtnSearch_Click(object sender, EventArgs e)
+        {
+            Session["SSearch"] = TbSearch.Text.ToString();
+            Response.Redirect("AskSearch.aspx");
+        }
     }
 }

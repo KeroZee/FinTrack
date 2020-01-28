@@ -43,6 +43,11 @@ namespace FinTrack.BLL
             return dao.SelectAll();
         }
 
+        public List<Post> GetSearchPost(string search)
+        {
+            PostDAO dao = new PostDAO();
+            return dao.Search(search);
+        }
 
         public Post GetPostById(string id)
         {

@@ -1,16 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FinTrackMaster.Master" AutoEventWireup="true" CodeBehind="Ask.aspx.cs" Inherits="FinTrack.Ask" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <form id="form1" runat="server">
-     <div class="container h-100">
-      <div class="d-flex justify-content-center h-100">
-        <div class="searchbar">
-          <input class="searchinput" type="text" name="" placeholder="Search for a question...">
-          <a href="AskSearch.aspx" class="searchicon"><i class="fas fa-search">
-            
-            </i></a>
+        <div class="container h-100">
+            <div class="d-flex justify-content-center h-100">
+                <div class="searchbar">
+
+                    <asp:TextBox ID="TbSearch" runat="server" CssClass="searchinput" placeholder="Search for a question..."></asp:TextBox>
+
+                    <asp:LinkButton runat="server" ID="LbtnSearch" OnClick="LbtnSearch_Click" CssClass="searchicon"><i class="fas fa-search"></asp:LinkButton></i>
+
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
          <button type="button" class="btn btn-primary btn-lg btn-block" id="postbutton" onclick="window.location.href = 'AskCreate.aspx';">
              Ask a Question
         
@@ -33,7 +34,7 @@
          <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Post]"></asp:SqlDataSource>
 
 <style>
-         a {
+        a {
             text-decoration: none;
             color: black;
         }

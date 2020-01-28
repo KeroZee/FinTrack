@@ -52,8 +52,50 @@ namespace FinTrack.DAL
             }
             return List;
         }
+        public List<Post> Search(string search)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
 
-        public Post SelectById(string postid)
+            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%';";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraSearch", search);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+
+
+            List<Post> List = new List<Post>();
+            int rec_cnt = ds.Tables[0].Rows.Count;
+            if (rec_cnt < 1)
+            {
+                List = null;
+            }
+            else
+            {
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+
+                    string id = row["id"].ToString();
+                    string category = row["category"].ToString();
+                    string title = row["title"].ToString();
+                    string content = row["content"].ToString();
+                    int likes = int.Parse(row["likes"].ToString());
+                    int dislikes = int.Parse(row["dislikes"].ToString());
+                    int comments = int.Parse(row["comments"].ToString());
+                    string accountid = row["accountId"].ToString();
+                    string dateposted = Convert.ToDateTime(row["datePosted"]).ToString("d/M/yyyy");
+                    string username = row["Username"].ToString();
+                    Post obj = new Post(id, category, title, content, likes, dislikes, comments, dateposted, accountid, username);
+                    List.Add(obj);
+                }
+
+
+            }
+            return List;
+        }
+
+            public Post SelectById(string postid)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
