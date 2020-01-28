@@ -5,28 +5,37 @@
       <div class="d-flex justify-content-center h-100">
         <div class="searchbar">
           <input class="searchinput" type="text" name="" placeholder="Search for a question...">
-          <a href="AskSearch.aspx" class="searchicon"><i class="fas fa-search"></i></a>
+          <a href="AskSearch.aspx" class="searchicon"><i class="fas fa-search">
+            
+            </i></a>
         </div>
       </div>
     </div>
-    <button type="button" class="btn btn-primary btn-lg btn-block" id="postbutton" onclick="window.location.href = 'AskCreate.aspx';">Ask a Question</button>
-    <%foreach (var item in posts){
-            LbTitle.Text = item.Title; LbTitle.ToolTip = item.Id;%> 
-    <div class="card">
-        <h5 class="card-header">
-            <asp:LinkButton ID="LbTitle" runat="server" OnClick="LbTitle_Click"></asp:LinkButton></h5>
-        <div class="card-body">   
-            <p class="card-title"><%= item.Content %></p>
-            <h5 class="card-text"><a href="#" class="usericon"><i class="fas fa-user"></i></a><a href="#" class="usertitle"><%= item.Username %>       
-                </a> - posted on the <%= item.DatePosted %></h5>
-            <h5 class="card-text"><a href="#" class="ratingsicon"><i class="fas fa-thumbs-up"></i></a><%= item.Likes %> <a href="#" class="ratingsicon"><i class="fas fa-thumbs-down"></i></a><%= item.Dislikes %> <a href="#" class="ratingsicon"><i class="fas fa-comment"></i></a><%= item.Comments %></h5>
-        </div>
-    </div>
-    <% } %>
-    <style>
-        a{
-            text-decoration:none;
-            color:black;
+         <button type="button" class="btn btn-primary btn-lg btn-block" id="postbutton" onclick="window.location.href = 'AskCreate.aspx';">
+             Ask a Question
+        
+         </button>
+
+         <asp:Repeater ID="PostRepeater" runat="server">
+             <itemtemplate>
+                <div class="card">
+                    <h5 class="card-header">
+                    <b>[<%# Eval("category")%>]</b> - <asp:LinkButton ID="LbTitle" Text='<%# Eval("title")%>' CommandName='<%# Eval("id")%>' runat="server" OnClick="LbTitle_Click"></asp:LinkButton></h5>
+                    <div class="card-body">   
+                    <p class="card-title"><%# Eval("content ") %></p>
+                    <h5 class="card-text"><a href="#" class="usericon"><i class="fas fa-user"></i></a><a href="#" class="usertitle"> <%# Eval("username") %>     
+                        </a> - posted on the <%# Eval("datePosted") %></h5>
+                    <h5 class="card-text"><a href="#" class="ratingsicon"><i class="fas fa-thumbs-up"></i></a><%# Eval("likes") %> <a href="#" class="ratingsicon"><i class="fas fa-thumbs-down"></i></a><%# Eval("dislikes") %> <a href="#" class="ratingsicon"><i class="fas fa-comment"></i></a><%# Eval("comments") %> </h5>
+                    </div>
+                </div> 
+            </itemtemplate>
+         </asp:Repeater>
+         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Post]"></asp:SqlDataSource>
+
+<style>
+         a {
+            text-decoration: none;
+            color: black;
         }
         .card-title{
             margin-top:-10px;

@@ -18,14 +18,29 @@ namespace FinTrack
         private void GetPosts()
         {
             Post post = new Post();
-            posts = post.GetAllPost();
+            List<Post> list = post.GetAllPost();
+            if (list != null)
+            {
+                RefreshRepeater(list);
+            }
+            else
+            {
+                
+            }
+            
         }
-
+        private void RefreshRepeater(List<Post> list)
+        {
+            PostRepeater.DataSource = list;
+            PostRepeater.DataBind();
+        }
 
         protected void LbTitle_Click(object sender, EventArgs e)
         {
             LinkButton b = (LinkButton)sender;
-            Session["STitle"] = b.ToolTip.ToString() + "Test";
+            
+            Session["STitle"] = b.Text;
+            Session["SId"] = b.CommandName;
             Response.Redirect("AskPost.aspx");
         }
     }

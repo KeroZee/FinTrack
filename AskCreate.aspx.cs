@@ -32,6 +32,7 @@ namespace FinTrack
         protected void BtnSubmit_Click(object sender, EventArgs e)
         {
             string id = Autoincrement();
+            string category = DdlCategory.SelectedValue.ToString();
             string title = TbTitle.Text.ToString();
             string content = TbContent.Text.ToString();
             int likes = 0;
@@ -40,7 +41,7 @@ namespace FinTrack
             string dateposted = DateTime.Now.ToString("d/M/yyyy");
             string accountid = Autoincrement();
             string username = "Admin";
-            Post obj = new Post(id, title, content, likes, dislikes, comment, dateposted, accountid, username);
+            Post obj = new Post(id, category, title, content, likes, dislikes, comment, dateposted, accountid, username);
             int insPost = obj.CreateNewPost();
             if (insPost == 1)
             {

@@ -90,6 +90,7 @@
     <Content Include="AskCreate.aspx" />
     <Content Include="AskPost.aspx" />
     <Content Include="AskSearch.aspx" />
+    <Content Include="AskUpdate.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -267,7 +268,18 @@
     <Compile Include="AskSearch.aspx.designer.cs">
       <DependentUpon>AskSearch.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AskUpdate.aspx.cs">
+      <DependentUpon>AskUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AskUpdate.aspx.designer.cs">
+      <DependentUpon>AskUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\Article.cs" />
+    <Compile Include="BLL\Expense.cs" />
     <Compile Include="BLL\Post.cs" />
+    <Compile Include="DAL\ArticleDAO.cs" />
+    <Compile Include="DAL\ExpenseDAO.cs" />
     <Compile Include="DAL\PostDAO.cs" />
     <Compile Include="FinTrackMaster.Master.cs">
       <DependentUpon>FinTrackMaster.Master</DependentUpon>
