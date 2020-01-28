@@ -5,6 +5,11 @@
     <form id="form1" runat="server">
 
         <div class="container">
+            <% if ((errorList.Any()))
+                { %>
+            <div class="alert alert-danger mt-2" role="alert"><%=errorList[0] %> </div>
+            <% } %>
+
             <h3>Create a New Article</h3>
 
 
