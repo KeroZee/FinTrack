@@ -10,7 +10,7 @@
 namespace FinTrack {
     
     
-    public partial class Learn {
+    public partial class LearnAdmin {
         
         /// <summary>
         /// form1 control.
@@ -22,30 +22,30 @@ namespace FinTrack {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// SubmitBtn control.
+        /// BtnAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton SubmitBtn;
+        protected global::System.Web.UI.WebControls.LinkButton BtnAdd;
         
         /// <summary>
-        /// Image3 control.
+        /// BtnEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image3;
+        protected global::System.Web.UI.WebControls.Button BtnEdit;
         
         /// <summary>
-        /// BtnDetailed control.
+        /// BtnDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnDetailed;
+        protected global::System.Web.UI.WebControls.Button BtnDelete;
     }
 }
