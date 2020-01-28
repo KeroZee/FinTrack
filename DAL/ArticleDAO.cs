@@ -28,13 +28,16 @@ namespace FinTrack.DAL
             if (rec_cnt > 0)
             {
                 DataRow row = ds.Tables[0].Rows[0];
-                string id = row["id"].ToString();
+                //string id = row["id"].ToString();
                 string title = row["title"].ToString();
                 int views = Convert.ToInt32(row["views"]);
                 int likes = Convert.ToInt32(row["likes"]);
                 int comments = Convert.ToInt32(row["comments"]);
                 string description = row["description"].ToString();
-                obj = new Article(id, title, views, likes, comments, description);
+                string image = row["image"].ToString();
+                string dateposted = Convert.ToDateTime(row["dateposted"]).ToString("d/M/yyyy");
+                string author = row["author"].ToString();
+                obj = new Article(title, views, likes, comments, description, image, dateposted, author);
             }
             return obj;
         }
@@ -61,18 +64,50 @@ namespace FinTrack.DAL
             int rec_cnt = ds.Tables[0].Rows.Count;
             for (int i = 0; i < rec_cnt; i++)
             {
-                DataRow row = ds.Tables[0].Rows[0];
-                string id = row["id"].ToString();
+                DataRow row = ds.Tables[0].Rows[i];
+                //string id = row["id"].ToString();
                 string title = row["title"].ToString();
                 int views = Convert.ToInt32(row["views"]);
                 int likes = Convert.ToInt32(row["likes"]);
                 int comments = Convert.ToInt32(row["comments"]);
                 string description = row["description"].ToString();
-                Article obj = new Article(id, title, views, likes, comments, description);
+                string image = row["image"].ToString();
+                string dateposted = row["dateposted"].ToString();
+                string author = row["author"].ToString();
+                Article obj = new Article(title, views, likes, comments, description, image, dateposted, author);
                 articleList.Add(obj);
             }
 
             return articleList;
+        }
+
+        public int Insert(Article art)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "INSERT INTO Article (title, views, likes, comments, description, image, dateposted, author)" +
+                             "VALUES (@paratitle, @paraviews, @paralikes, @paracomments, @paradescriptions, @paraimage, @paradateposted, @paraauthor)";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            //sqlCmd.Parameters.AddWithValue("@paraid", art.Id);
+            sqlCmd.Parameters.AddWithValue("@paratitle", art.Title);
+            sqlCmd.Parameters.AddWithValue("@paraviews", art.Views);
+            sqlCmd.Parameters.AddWithValue("@paralikes", art.Likes);
+            sqlCmd.Parameters.AddWithValue("@paracomments", art.Comments);
+            sqlCmd.Parameters.AddWithValue("@paradescriptions", art.Description);
+            sqlCmd.Parameters.AddWithValue("@paraimage", art.Image);
+            sqlCmd.Parameters.AddWithValue("@paradateposted", art.DatePosted);
+            sqlCmd.Parameters.AddWithValue("@paraauthor", art.Author);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            myConn.Close();
+
+            return result;
         }
     }
 }
