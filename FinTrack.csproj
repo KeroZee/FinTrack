@@ -173,6 +173,8 @@
     <Content Include="js\modules\wow.js" />
     <Content Include="js\popper.min.js" />
     <Content Include="Learn.aspx" />
+    <Content Include="LearnAdmin.aspx" />
+    <Content Include="LearnAdminAdd.aspx" />
     <Content Include="LearnDetailed.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -291,7 +293,6 @@
     <Compile Include="BLL\Expense.cs" />
     <Compile Include="BLL\Post.cs" />
     <Compile Include="DAL\ArticleDAO.cs" />
-    <Compile Include="DAL\ArticleDAO.cs" />
     <Compile Include="DAL\ExpenseDAO.cs" />
     <Compile Include="DAL\PostDAO.cs" />
     <Compile Include="FinTrackMaster.Master.cs">
@@ -324,6 +325,20 @@
     </Compile>
     <Compile Include="Learn.aspx.designer.cs">
       <DependentUpon>Learn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LearnAdmin.aspx.cs">
+      <DependentUpon>LearnAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LearnAdmin.aspx.designer.cs">
+      <DependentUpon>LearnAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LearnAdminAdd.aspx.cs">
+      <DependentUpon>LearnAdminAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LearnAdminAdd.aspx.designer.cs">
+      <DependentUpon>LearnAdminAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="LearnDetailed.aspx.cs">
       <DependentUpon>LearnDetailed.aspx</DependentUpon>
