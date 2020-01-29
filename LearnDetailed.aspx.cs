@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinTrack.BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,23 @@ namespace FinTrack
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Page.IsPostBack == false)
+            {
+                if (Session["ArtID"] != null)
+                {
+                    string id = Session["ArtID"].ToString();
+                    Article art = new Article();
+                    art = art.GetArticleById(id);
+                    LblTitle.Text = art.Title.ToString();
+                    LblDescription.Text = art.Description.ToString();
+                    LblDatePosted.Text = art.DatePosted.ToString();
+                    LblAuthor.Text = art.Author.ToString();
+                }
+                else
+                {
+                    Response.Redirect("Learn.aspx");
+                }
+            }
         }
     }
 }
