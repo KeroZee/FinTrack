@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FinTrackMaster.Master" AutoEventWireup="true" CodeBehind="Track.aspx.cs" Inherits="FinTrack.Track" %>
 
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <body>
@@ -17,8 +19,11 @@
                     <asp:DropDownList ID="ddlCat" class="form-control mb-4" runat="server">
                         <asp:ListItem Value="-1">-- Select --</asp:ListItem>
                         <asp:ListItem>Food</asp:ListItem>
-                        <asp:ListItem>Transport</asp:ListItem>
-                        <asp:ListItem>Miscellaneous</asp:ListItem>
+                        <asp:ListItem>Transportation</asp:ListItem>
+                        <asp:ListItem>Housing</asp:ListItem>
+                        <asp:ListItem>Utilities</asp:ListItem>
+                        <asp:ListItem>Healthcare & Medical</asp:ListItem>
+                        <asp:ListItem>Debt Repayment</asp:ListItem>
                     </asp:DropDownList>
                     <asp:TextBox ID="txtDesc" class="form-control mb-4" runat="server" rows="4" placeholder="Description of Expense" TextMode="MultiLine"></asp:TextBox>
                     <asp:TextBox ID="txtCost" class="form-control mb-4" runat="server" placeholder="Cost"></asp:TextBox>
@@ -48,18 +53,17 @@
                         <div class="col-md-10">
                             <div class="card d-none d-lg-block" style="padding: 10px;">
                                 <div class="row">
-                                    <div class="col-md-2">
-                                    </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md">
                                         <asp:TextBox ID="txtStartDate" TextMode="Date" class="form-control mb-4" runat="server"></asp:TextBox>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md">
                                         <asp:TextBox ID="txtEndDate" TextMode="Date" class="form-control mb-4" runat="server" ></asp:TextBox>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md">
                                         <asp:Button ID="btnFilter" runat="server" class="form-control mb-4" OnClick="btnFilter_Click" Text="Filter" />
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md">
+                                        <asp:Button ID="btnGenerateGraph" runat="server" class="form-control mb-4" OnClick="btnGenerateGraph_Click" Text="Generate Graph" />
                                     </div>
                                 </div>  
                                 <div class="row">
@@ -72,7 +76,7 @@
                                                 <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True" />
                                                 <asp:BoundField DataField="Category" HeaderText="Category" />
                                                 <asp:BoundField DataField="Description" HeaderText="Description" />
-                                                <asp:BoundField DataField="Cost" DataFormatString="{0:C2}" HeaderText="Cost" />
+                                                <asp:BoundField DataField="Cost" DataFormatString="{0:N2}" HeaderText="Cost" />
                                                 <asp:BoundField DataField="Date" DataFormatString="{0:d}" HeaderText="Date" ReadOnly="True" />
                                                 <asp:CommandField ShowDeleteButton="True" />
                                                 <asp:CommandField ShowSelectButton="True" />

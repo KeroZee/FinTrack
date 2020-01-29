@@ -17,7 +17,7 @@ namespace FinTrack
     {
         List<Expense> expList;
         List<Expense> dateRangeList;
-        DateTime now = DateTime.Today;
+        DateTime now = DateTime.Today;  
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -67,7 +67,7 @@ namespace FinTrack
             }
             if (String.IsNullOrEmpty(txtCost.Text))
             {
-                lblError.Text += "Name is required!" + "<br/>";
+                lblError.Text += "Cost of item is required!" + "<br/>";
             }
             if (ddlCat.SelectedIndex == 0)
             {
@@ -86,7 +86,6 @@ namespace FinTrack
 
         protected void gvExpense_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             GridViewRow row = gvExpense.SelectedRow;
             Session["SSID"] = row.Cells[0].Text;
             Session["SSCategory"] = row.Cells[1].Text;
@@ -98,17 +97,10 @@ namespace FinTrack
 
         protected void gvExpense_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString);
-            SqlCommand cmd = null;
-
             int rowIndex = e.RowIndex;
-            int sid = Convert.ToInt16(gvExpense.Rows[rowIndex].Cells[0].Text);
 
-            con.Open();
-            cmd = new SqlCommand("DELETE FROM Expense WHERE id = @id", con);
-            cmd.Parameters.AddWithValue("@id", sid);
-            cmd.ExecuteNonQuery();
-            con.Close();
+            Expense exp = new Expense();
+            exp.DeleteByRow(Convert.ToInt16(gvExpense.Rows[rowIndex].Cells[0].Text));
 
             gvExpense.EditIndex = -1;
             RefreshGridView();
@@ -124,11 +116,16 @@ namespace FinTrack
 
         protected void btnFilter_Click(object sender, EventArgs e)
         {
-            ExpenseDAO dao = new ExpenseDAO();
-            dateRangeList = dao.FilterByDate(txtStartDate.Text, txtEndDate.Text);
+            Expense exp = new Expense();
+            dateRangeList = exp.FilterDate(txtStartDate.Text, txtEndDate.Text);
             gvExpense.Visible = true;
             gvExpense.DataSource = dateRangeList;
             gvExpense.DataBind();
+        }
+
+        protected void btnGenerateGraph_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("GenerateGraph.aspx");
         }
     }
 }

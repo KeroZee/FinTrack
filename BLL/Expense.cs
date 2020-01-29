@@ -46,5 +46,30 @@ namespace FinTrack.BLL
             int result = dao.Update(this);
             return result;
         }
+        public List<Expense> FilterDate(string startDate, string endDate)
+        {
+            //DateTime startDate = 
+            ExpenseDAO dao = new ExpenseDAO();
+            List<Expense> result = dao.FilterByDate(startDate, endDate);
+            return result;
+        }
+        public int DeleteByRow(long sid)
+        {
+            ExpenseDAO dao = new ExpenseDAO();
+            int result = dao.DeletebyRow(sid);
+            return result;
+        }
+        public List<Expense> selectGraphData(string date, string price)
+        {
+            ExpenseDAO dao = new ExpenseDAO();
+            List<Expense> result = dao.SelectGraphData(date, price);
+            return result;
+        }
+        public List<Expense> RetrieveDataByEmail(string email)
+        {
+            ExpenseDAO dao = new ExpenseDAO();
+            List<Expense> result = dao.SearchByEmail(email);
+            return result;
+        }
     }
 }
