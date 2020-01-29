@@ -176,6 +176,10 @@
     <Content Include="LearnAdmin.aspx" />
     <Content Include="LearnAdminAdd.aspx" />
     <Content Include="LearnDetailed.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="Mailbox.png" />
+    <Content Include="Profile.aspx" />
+    <Content Include="Register.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -232,6 +236,8 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Track.aspx" />
+    <Content Include="UpdateTrack.aspx" />
+    <Content Include="UpgradeLog.htm" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -292,9 +298,11 @@
     <Compile Include="BLL\Article.cs" />
     <Compile Include="BLL\Expense.cs" />
     <Compile Include="BLL\Post.cs" />
+    <Compile Include="BLL\Profiles.cs" />
     <Compile Include="DAL\ArticleDAO.cs" />
     <Compile Include="DAL\ExpenseDAO.cs" />
     <Compile Include="DAL\PostDAO.cs" />
+    <Compile Include="DAL\ProfileDAO.cs" />
     <Compile Include="FinTrackMaster.Master.cs">
       <DependentUpon>FinTrackMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -347,13 +355,41 @@
     <Compile Include="LearnDetailed.aspx.designer.cs">
       <DependentUpon>LearnDetailed.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Track.aspx.cs">
       <DependentUpon>Track.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Track.aspx.designer.cs">
       <DependentUpon>Track.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateTrack.aspx.cs">
+      <DependentUpon>UpdateTrack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateTrack.aspx.designer.cs">
+      <DependentUpon>UpdateTrack.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
