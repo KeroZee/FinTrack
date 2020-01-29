@@ -3,20 +3,30 @@
      <form id="form1" runat="server">
         <div class="container h-100">
             <div class="d-flex justify-content-center h-100">
-                <div class="searchbar">
+                <div class="searchbar" >
 
                     <asp:TextBox ID="TbSearch" runat="server" CssClass="searchinput" placeholder="Search for a question..."></asp:TextBox>
 
                     <asp:LinkButton runat="server" ID="LbtnSearch" OnClick="LbtnSearch_Click" CssClass="searchicon"><i class="fas fa-search"></asp:LinkButton></i>
-
+                    
                 </div>
+                <div class="dropdown" style="display:inline-block">
+                        <button class="btn btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                        <i class="fa fa-random"></i> Sort
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Sort by Recent</a>
+                        <a class="dropdown-item" href="#">Sort by Category</a>
+                        <a class="dropdown-item" href="#">Sort by Ascending</a>
+                        </div>
+                    </div>
             </div>
         </div>
          <button type="button" class="btn btn-primary btn-lg btn-block" id="postbutton" onclick="window.location.href = 'AskCreate.aspx';">
              Ask a Question
         
-         </button>
-
+         </button>                
+         
          <asp:Repeater ID="PostRepeater" runat="server">
              <itemtemplate>
                 <div class="card">
@@ -34,6 +44,9 @@
          <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Post]"></asp:SqlDataSource>
 
 <style>
+    .btn{
+        padding:0;
+    }
         a {
             text-decoration: none;
             color: black;
@@ -78,7 +91,6 @@
         }
         .searchbar{
             margin-bottom: auto;
-            margin:auto;
             margin-top: 80px;
             margin-bottom: 50px;
             height: 60px;
@@ -86,6 +98,17 @@
             border-radius: 8px;
             padding: 10px;
     
+        }
+        .dropdown{
+            margin-bottom: auto;
+            margin-top: 74px;
+            margin-bottom: 50px;
+            
+        }
+        #dropdownMenuButton{
+            border-radius: 8px;
+            height: 60px;
+            padding:10px;
         }
         ::placeholder{
             color:white;
