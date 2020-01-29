@@ -31,6 +31,9 @@ namespace FinTrack
 
         protected void BtnDetailed_Click(object sender, EventArgs e)
         {
+            Button b = (Button)sender;
+
+            Session["ArtID"] = b.CommandName;
             Response.Redirect("LearnDetailed.aspx");
         }
 
