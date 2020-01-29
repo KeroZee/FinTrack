@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace FinTrack
 {
-    public partial class Learn : System.Web.UI.Page
+    public partial class LearnAdmin : System.Web.UI.Page
     {
         public List<Article> artList;
         protected void Page_Load(object sender, EventArgs e)
@@ -26,17 +26,12 @@ namespace FinTrack
         {
             //Session["ArticleId"] = 
             Article article = new Article();
-           // article = article.GetArticleById()
+            // article = article.GetArticleById()
         }
 
-        protected void BtnDetailed_Click(object sender, EventArgs e)
+        protected void BtnAdd_Click(object sender, EventArgs e)
         {
-            Response.Redirect("LearnDetailed.aspx");
-        }
-
-        protected void BtnAdmin_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("LearnAdmin.aspx");
+            Response.Redirect("LearnAdminAdd.aspx");
         }
     }
 }
