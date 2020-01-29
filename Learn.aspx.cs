@@ -8,8 +8,9 @@ using System.Web.UI.WebControls;
 
 namespace FinTrack
 {
-    public partial class Learn1 : System.Web.UI.Page
+    public partial class Learn : System.Web.UI.Page
     {
+        public List<Article> artList;
         protected void Page_Load(object sender, EventArgs e)
         {
             Fill();
@@ -18,7 +19,6 @@ namespace FinTrack
         private void Fill()
         {
             Article article = new Article();
-            List<Article> artList;
             artList = article.GetAllArticle();
         }
 
@@ -29,9 +29,14 @@ namespace FinTrack
            // article = article.GetArticleById()
         }
 
-        protected void Button1_Click1(object sender, EventArgs e)
+        protected void BtnDetailed_Click(object sender, EventArgs e)
         {
             Response.Redirect("LearnDetailed.aspx");
+        }
+
+        protected void BtnAdmin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("LearnAdmin.aspx");
         }
     }
 }
