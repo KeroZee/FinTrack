@@ -37,7 +37,10 @@ namespace FinTrack.DAL
                 string image = row["image"].ToString();
                 string dateposted = Convert.ToDateTime(row["dateposted"]).ToString("d/M/yyyy");
                 string author = row["author"].ToString();
-                obj = new Article(title, views, likes, comments, description, image, dateposted, author);
+                string link = row["link"].ToString();
+                string lastupdated = Convert.ToDateTime(row["lastupdated"]).ToString("d/M/yyyy");
+                Boolean deleted = Convert.ToBoolean(row["deleted"]);
+                obj = new Article(title, views, likes, comments, description, image, dateposted, author, link, lastupdated, deleted);
             }
             return obj;
         }
@@ -74,7 +77,10 @@ namespace FinTrack.DAL
                 string image = row["image"].ToString();
                 string dateposted = row["dateposted"].ToString();
                 string author = row["author"].ToString();
-                Article obj = new Article(title, views, likes, comments, description, image, dateposted, author);
+                string link = row["link"].ToString();
+                string lastupdated = Convert.ToDateTime(row["lastupdated"]).ToString("d/M/yyyy");
+                Boolean deleted = Convert.ToBoolean(row["deleted"]);
+                Article obj = new Article(title, views, likes, comments, description, image, dateposted, author, link, lastupdated, deleted);
                 articleList.Add(obj);
             }
 
@@ -86,8 +92,8 @@ namespace FinTrack.DAL
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "INSERT INTO Article (title, views, likes, comments, description, image, dateposted, author)" +
-                             "VALUES (@paratitle, @paraviews, @paralikes, @paracomments, @paradescriptions, @paraimage, @paradateposted, @paraauthor)";
+            string sqlStmt = "INSERT INTO Article (title, views, likes, comments, description, image, dateposted, author, link, lastupdated, deleted)" +
+                             "VALUES (@paratitle, @paraviews, @paralikes, @paracomments, @paradescriptions, @paraimage, @paradateposted, @paraauthor, @paralink, @paralastupdated, @paradeleted)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -101,10 +107,61 @@ namespace FinTrack.DAL
             sqlCmd.Parameters.AddWithValue("@paraimage", art.Image);
             sqlCmd.Parameters.AddWithValue("@paradateposted", art.DatePosted);
             sqlCmd.Parameters.AddWithValue("@paraauthor", art.Author);
+            sqlCmd.Parameters.AddWithValue("@paralink", art.Link);
+            sqlCmd.Parameters.AddWithValue("@paralastupdated", art.LastUpdated);
+            sqlCmd.Parameters.AddWithValue("@paradeleted", art.Deleted);
+
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
 
+            myConn.Close();
+
+            return result;
+        }
+
+        public int UpdateById(string id, string title, string description, string author, string link, string lastupdated)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE Article SET title = @paratitle, description = @paradescription, author = @paraauthor, " +
+                "link = @paralink, lastupdated = @paralastupdated WHERE id = @paraid";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraid", id);
+            sqlCmd.Parameters.AddWithValue("@paratitle", title);
+            sqlCmd.Parameters.AddWithValue("@paradescription", description);
+            sqlCmd.Parameters.AddWithValue("@paraauthor", author);
+            sqlCmd.Parameters.AddWithValue("@paralink", link);
+            sqlCmd.Parameters.AddWithValue("@paralastupdated", lastupdated);
+
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+            myConn.Close();
+
+            return result;
+        }
+
+        public int DeleteById(string id, Boolean deleted)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE Article SET deleted = @paradeleted WHERE id = @paraid";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraid", id);
+            sqlCmd.Parameters.AddWithValue("@paradeleted", deleted);
+
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
             myConn.Close();
 
             return result;
