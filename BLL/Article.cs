@@ -17,13 +17,17 @@ namespace FinTrack.BLL
         public string Image { get; set; }
         public string DatePosted { get; set; }
         public string Author { get; set; }
+        public string Link { get; set; }
+        public string LastUpdated { get; set; }
+        public Boolean Deleted { get; set; }
+
 
         public Article()
         {
 
         }
 
-        public Article(string title, int views, int likes, int comments, string description, string image, string dateposted, string author)
+        public Article(string title, int views, int likes, int comments, string description, string image, string dateposted, string author, string link, string lastupdated, Boolean deleted )
         {
             //this.Id = id;
             this.Title = title;
@@ -34,6 +38,9 @@ namespace FinTrack.BLL
             this.Image = image;
             this.DatePosted = dateposted;
             this.Author = author;
+            this.Link = link;
+            this.LastUpdated = lastupdated;
+            this.Deleted = deleted;
         }
 
         public Article GetArticleById(string articleId)
@@ -52,6 +59,18 @@ namespace FinTrack.BLL
         {
             ArticleDAO dao = new ArticleDAO();
             return (dao.Insert(this));
+        }
+
+        public int UpdateArticle(string id, string title, string description, string author, string link, string lastupdated)
+        {
+            ArticleDAO dao = new ArticleDAO();
+            return dao.UpdateById(id, title, description, author, link, lastupdated);
+        }
+
+        public int DeleteArticle(string id, Boolean deleted)
+        {
+            ArticleDAO dao = new ArticleDAO();
+            return dao.DeleteById(id, deleted);
         }
     }
 }
