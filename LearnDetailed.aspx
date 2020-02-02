@@ -20,6 +20,9 @@
                     </div>
                     <hr />
                     <div class="row">
+                        <div class="col-6">
+
+                        </div>
                             Created on:  <asp:Label ID="LblDatePosted" runat="server" Text="" style="display: inline-block"></asp:Label>                      
                     </div>
                     <div class="row">

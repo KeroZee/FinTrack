@@ -7,7 +7,13 @@
 
             <asp:LinkButton ID="SubmitBtn" runat="server" OnClick="BtnAdmin_Click" CssClass="btn btn-info btn-block mt-2">Go to Admin Page</asp:LinkButton>
 
-            <asp:SqlDataSource ID="ArticleDatasource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Article]"></asp:SqlDataSource>
+            <asp:SqlDataSource 
+                ID="ArticleDatasource" 
+                runat="server" 
+                ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
+                SelectCommand="SELECT * FROM [Article] WHERE DELETED='false'">
+            </asp:SqlDataSource>
+
             <asp:Repeater ID="Repeater1" runat="server" DataSourceID="ArticleDatasource">
                 <itemtemplate>
                         <div class="row mt-3">
@@ -23,6 +29,10 @@
                                 <h6 class="card-text mb-2 text-muted"><span class="mr-2"><%# Eval("Views") %> Views</span><span class="mr-2"><%# Eval("Likes") %> Likes</span><span class="mr-2"><%# Eval("Comments") %> Comments</span></h6>
                                 <p class="card-subtitle mb-2 text-black"><%# Eval("Description") %></p>
                                 <asp:Button ID="BtnDetailed"  CommandName='<%# Eval("id")%>' class="btn btn-primary" runat="server" Text="Read More" OnClick="BtnDetailed_Click" />
+                                <br />
+                                <asp:LinkButton ID="BtnLike"  CommandName='<%# Eval("id")%>' class="" runat="server">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </asp:LinkButton>
                             </div>
                         </div>
                     </div>

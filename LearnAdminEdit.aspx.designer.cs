@@ -10,7 +10,7 @@
 namespace FinTrack {
     
     
-    public partial class LearnAdminAdd {
+    public partial class LearnAdminEdit {
         
         /// <summary>
         /// form1 control.

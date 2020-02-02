@@ -8,36 +8,49 @@ using System.Web.UI.WebControls;
 
 namespace FinTrack
 {
-    public partial class LearnAdminAdd : System.Web.UI.Page
+    public partial class LearnAdminEdit : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Page.IsPostBack == false)
+            {
+                if (Session["ArtID"] != null)
+                {
+                    string id = Session["ArtID"].ToString();
+                    Article art = new Article();
+                    art = art.GetArticleById(id);
+                    TextboxTitle.Text = art.Title.ToString();
+                    TextboxDescription.Text = art.Description.ToString();
+                    TextboxAuthor.Text = art.Author.ToString();
+                    TextboxLink.Text = art.Link.ToString();
+                }
+                else
+                {
+                    Response.Redirect("LearnAdmin.aspx");
+                }
+            }
         }
 
         protected void ButtonSubmit_Click(object sender, EventArgs e)
         {
             if (Validation())
-                {
-                String title = TextboxTitle.Text.ToString();
-                int views = 0;
-                int likes = 0;
-                int comments = 0;
+            {
+                string id = Session["ArtID"].ToString();
+                String title = TextboxTitle.Text.ToString();                
                 String description = TextboxDescription.Text.ToString();
-                String image = "";
+                String author = TextboxAuthor.Text.ToString();
                 var dateAndTime = DateTime.Now;
                 String lastupdated = dateAndTime.ToShortDateString();
-                String dateposted = dateAndTime.ToShortDateString();
-                String author = TextboxAuthor.Text.ToString();
                 String link = TextboxLink.Text.ToString();
-                Boolean deleted = false;
-    
-                //Instantiate object
-                Article art = new Article(title, views, likes, comments, description, image, dateposted, author, link, lastupdated, deleted);
-                int insCnt = art.AddArticle();
+
+                //Get Article
+
+                Article art = new Article();
+                art = art.GetArticleById(id);
+                int insCnt = art.UpdateArticle(id, title, description, author, link, lastupdated);
                 Response.Redirect("LearnAdmin.aspx");
-            }            
-       }
+            }
+        }
 
         public List<String> errorList = new List<String>();
 

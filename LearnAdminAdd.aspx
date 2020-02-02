@@ -24,6 +24,11 @@
             </div>
 
             <div class="mt-2">
+            <asp:Label ID="Label4" runat="server" Text="Link: "></asp:Label>
+            <asp:TextBox ID="TextboxLink" runat="server"></asp:TextBox>
+            </div>
+
+            <div class="mt-2">
             <asp:Label ID="Label2" runat="server" Text="Description: "></asp:Label>
             <asp:TextBox ID="TextboxDescription" runat="server"></asp:TextBox>
             </div>
