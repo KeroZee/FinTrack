@@ -9,7 +9,7 @@
             <div>
             <img src="Mailbox.png"  style="width:60%; height:277px;" />
             <h3 style="margin-left:80px">Peter Doe</h3>
-            <p><button style ="color:aqua;" type="button" class ="btn btn-link">EDIT DETAILS</button></p>
+            <asp:Button runat="server" Text="EDIT" style ="color:aqua;" class ="btn btn-link" OnClick="Unnamed1_Click"/>
             <div id="info">
                 <ul style="list-style-type:none;">
                 <li><p>Email: <placeholder><strong>Peter_P@abc.com</strong></placeholder></p></li>
@@ -25,7 +25,7 @@
             </div>
             <div class="col-md-6">
             <div class="card">
-            <p>Bio: <textarea rows="4" cols="50">Hi</textarea></p>
+            <p>Bio: <textarea rows="4" cols="50" readonly="readonly">Hi</textarea></p>
             <p>Nickname: <placeholder><strong>Pete</strong></placeholder></p>
             <p>Nickname: <placeholder><strong>User</strong></placeholder></p>
             <p>Questions Asked: <a href="#">12</a></p>

@@ -13,5 +13,10 @@ namespace FinTrack
         {
 
         }
+
+        protected void Unnamed1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AddProfile.aspx");
+        }
     }
 }
