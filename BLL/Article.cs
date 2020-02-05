@@ -72,5 +72,11 @@ namespace FinTrack.BLL
             ArticleDAO dao = new ArticleDAO();
             return dao.DeleteById(id, deleted);
         }
+
+        public int UpdateViews(string id, int views)
+        {
+            ArticleDAO dao = new ArticleDAO();
+            return dao.UpdateViewsById(id, views);
+        }
     }
 }
