@@ -49,6 +49,15 @@ namespace FinTrack {
         protected global::System.Web.UI.WebControls.Label LblDescription;
         
         /// <summary>
+        /// LblAuthor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblAuthor;
+        
+        /// <summary>
         /// LblDatePosted control.
         /// </summary>
         /// <remarks>
@@ -58,12 +67,48 @@ namespace FinTrack {
         protected global::System.Web.UI.WebControls.Label LblDatePosted;
         
         /// <summary>
-        /// LblAuthor control.
+        /// LblViews control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblAuthor;
+        protected global::System.Web.UI.WebControls.Label LblViews;
+        
+        /// <summary>
+        /// LblLikes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblLikes;
+        
+        /// <summary>
+        /// LblComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblComments;
+        
+        /// <summary>
+        /// LblLastUpdated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblLastUpdated;
+        
+        /// <summary>
+        /// BtnLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton BtnLink;
     }
 }
