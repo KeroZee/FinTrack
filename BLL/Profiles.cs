@@ -60,6 +60,11 @@ namespace FinTrack.BLL
             ProfileDAO DAO = new ProfileDAO();
             return (DAO.Insert(this));
         }
+        //public int LoginByID(string Email)
+        //{
+        //    ProfileDAO DAO = new ProfileDAO();
+        //    return (DAO.LoginCheck(Email));
+        //}
     }
    
 

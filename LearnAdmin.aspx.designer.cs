@@ -31,21 +31,21 @@ namespace FinTrack {
         protected global::System.Web.UI.WebControls.LinkButton BtnAdd;
         
         /// <summary>
-        /// BtnEdit control.
+        /// ArticleDatasource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnEdit;
+        protected global::System.Web.UI.WebControls.SqlDataSource ArticleDatasource;
         
         /// <summary>
-        /// BtnDelete control.
+        /// Repeater1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnDelete;
+        protected global::System.Web.UI.WebControls.Repeater Repeater1;
     }
 }

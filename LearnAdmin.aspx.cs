@@ -33,5 +33,30 @@ namespace FinTrack
         {
             Response.Redirect("LearnAdminAdd.aspx");
         }
+
+        protected void BtnEdit_Click(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;
+
+            Session["ArtID"] = b.CommandName;
+            Response.Redirect("LearnAdminEdit.aspx");
+        }
+
+        protected void BtnDelete_Click(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;
+
+            Session["ArtID"] = b.CommandName;
+
+            string id = Session["ArtID"].ToString();
+            Boolean deleted = true;
+
+            //Get Article
+
+            Article art = new Article();
+            art = art.GetArticleById(id);
+            int insCnt = art.DeleteArticle(id, deleted);
+            Response.Redirect("LearnAdmin.aspx");
+        }
     }
 }

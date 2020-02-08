@@ -26,11 +26,14 @@ namespace FinTrack
                 String description = TextboxDescription.Text.ToString();
                 String image = "";
                 var dateAndTime = DateTime.Now;
+                String lastupdated = dateAndTime.ToShortDateString();
                 String dateposted = dateAndTime.ToShortDateString();
                 String author = TextboxAuthor.Text.ToString();
-
+                String link = TextboxLink.Text.ToString();
+                Boolean deleted = false;
+    
                 //Instantiate object
-                Article art = new Article(title, views, likes, comments, description, image, dateposted, author);
+                Article art = new Article(title, views, likes, comments, description, image, dateposted, author, link, lastupdated, deleted);
                 int insCnt = art.AddArticle();
                 Response.Redirect("LearnAdmin.aspx");
             }            

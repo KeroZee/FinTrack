@@ -2,45 +2,56 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <form id="form1" runat="server">
+    <div class="card mt-4 mx-auto" style="width: 46rem">
+        <div class="card-body text-center">
+            <h5 class="card-title">Add New Article</h5>
 
-        <div class="container">
-            <% if ((errorList.Any()))
-                { %>
-            <div class="alert alert-danger mt-2" role="alert"><%=errorList[0] %> </div>
-            <% } %>
+            <form class="text-center p-3"  runat="server">
+                    <% if ((errorList.Any()))
+                    { %>
+                <div class="alert alert-danger mt-2" role="alert"><%=errorList[0] %> </div>
+                <% } %>
 
-            <h3>Create a New Article</h3>
+                <div class="mt-2">
+                    <asp:Label ID="Label3" class="float-left text-muted" runat="server" Text="Title: "></asp:Label>
+                    <br />
+                    <asp:TextBox ID="TextboxTitle" class="form-control" runat="server"></asp:TextBox>
+                </div>
+
+                <div class="mt-2">
+                    <asp:Label ID="Label1" class="float-left" runat="server" Text="Author: "></asp:Label>
+                    <br />
+                    <asp:TextBox ID="TextboxAuthor" class="form-control" runat="server"></asp:TextBox>
+                </div>
+
+                <div class="mt-2">
+                    <asp:Label ID="Label2" class="float-left" runat="server" Text="Description: "></asp:Label>
+                    <br />
+                    <asp:TextBox ID="TextboxDescription" class="form-control" textMode="Multiline" rows="7"  runat="server"></asp:TextBox>
+                </div>
+
+                <div class="mt-2">
+                    <asp:Label ID="LabelLink" class="float-left" runat="server" Text="Link: "></asp:Label>
+                    <br />
+                    <asp:TextBox ID="TextboxLink" class="form-control" runat="server"></asp:TextBox>
+                </div>
 
 
-            <div class="mt-3">
-            <asp:Label ID="Label1" runat="server" Text="Title: "></asp:Label>
-            <asp:TextBox ID="TextboxTitle" runat="server"></asp:TextBox>
-            </div>
 
-            <div class="mt-2">
-            <asp:Label ID="Label3" runat="server" Text="Author: "></asp:Label>
-            <asp:TextBox ID="TextboxAuthor" runat="server"></asp:TextBox>
-            </div>
 
-            <div class="mt-2">
-            <asp:Label ID="Label2" runat="server" Text="Description: "></asp:Label>
-            <asp:TextBox ID="TextboxDescription" runat="server"></asp:TextBox>
-            </div>
 
-            <asp:Button ID="ButtonSubmit" class="btn btn-success" runat="server" Text="Submit" OnClick="ButtonSubmit_Click" />
 
-                  
+
+
+                <asp:Button class="btn btn-success mt-4" runat="server" Text="Submit"  onclick="ButtonSubmit_Click" />
+
+
+            </form>
+
         </div>
 
+    </div>
 
-
-
-
-
-
-
-    </form>
 
 
 </asp:Content>

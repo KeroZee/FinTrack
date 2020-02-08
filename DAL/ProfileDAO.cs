@@ -55,6 +55,23 @@ namespace FinTrack.DAL
             return Prof;
 
         }
+
+        public int LoginCheck(string email, Profiles Prof )
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+            
+            string query = "SELECT COUNT(1) FROM Profile WHERE email=@email AND password=@password";
+            int count = 0;
+            SqlCommand sqlCmd = new SqlCommand(query, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@email", Prof.Email);
+            sqlCmd.Parameters.AddWithValue("@password", Prof.Password);
+            myConn.Open();
+            count = sqlCmd.ExecuteNonQuery();
+            myConn.Close();
+            return count;
+        }
         public int Insert(Profiles Prof)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
@@ -84,6 +101,7 @@ namespace FinTrack.DAL
 
             return result;
         }
+        
 
     }
 }
