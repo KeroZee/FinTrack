@@ -25,28 +25,29 @@
                 <asp:Label ID="LblDate" runat="server"></asp:Label>
             </h5>
             <h5 class="card-text">
-                <a href="#" class="ratingsicon"><i class="fas fa-thumbs-up"></i></a><asp:Label ID="LblLikes" runat="server"></asp:Label>
-                <a href="#" class="ratingsicon"><i class="fas fa-thumbs-down"></i></a><asp:Label ID="LblDislikes" runat="server"></asp:Label>
-                <a href="#" class="ratingsicon"><i class="fas fa-comment"></i></a><asp:Label ID="LblComments" runat="server"></asp:Label>
+                <asp:LinkButton ID="LbtnLike" CssClass="ratingsicon" CommandName='' runat="server" OnClick="LbtnLike_Click"><i class="fas fa-thumbs-up"></i></asp:LinkButton><asp:Label ID="LblLikes" runat="server"></asp:Label>
+                <asp:LinkButton ID="LbtnDislike" CssClass="ratingsicon" CommandName='' runat="server" OnClick="LbtnDislike_Click" ><i class="fas fa-thumbs-down"></i></asp:LinkButton><asp:Label ID="LblDislikes" runat="server"></asp:Label>
+                <p class="ratingsicon"><i class="fas fa-comment"></i></p><asp:Label ID="LblComments" runat="server"></asp:Label>
             </h5>
 
         </div>
         <div class="commentbox">
           <label for="comment">Reply:</label>
-          <textarea class="form-control" rows="3" id="comment"></textarea>
-          <div id="submit"><input class="btn btn-primary btn-sm" type="submit" value="Reply"></div>
+          <asp:TextBox CssClass="form-control" runat="server" ID="TbContent" Rows="3"  TextMode="MultiLine"></asp:TextBox>
+          <div id="submit"><asp:Button ID="BtnReply" CssClass="btn btn-primary btn-sm" runat="server" Text="Reply" OnClick="BtnReply_Click"/></div>
             
               
             
         </div>
         <hr>
-        <div class="card-body" id="usercomment">Just do it<br /><h5 class="card-text"><a href="#" class="usericon"><i class="fas fa-user"></i></a><a href="#" class="usertitle">Ron Low</a> - posted on the 2/1/2020</h5> 
-            <h5 class="card-text"><a href="#" class="ratingsicon"><i class="fas fa-thumbs-up"></i></a>3 <a href="#" class="ratingsicon"><i class="fas fa-thumbs-down"></i></a>1 <a href="#" class="ratingsicon"><i class="fas fa-reply"></i></a>REPLY</h5>
-        </div>
-        <div class="card-body" id="usercomment">What kind of stuff???<br /><h5 class="card-text"><a href="#" class="usericon"><i class="fas fa-user"></i></a><a href="#" class="usertitle">Brian Row</a> - posted on the 5/1/2020</h5> 
-            <h5 class="card-text"><a href="#" class="ratingsicon"><i class="fas fa-thumbs-up"></i></a>0 <a href="#" class="ratingsicon"><i class="fas fa-thumbs-down"></i></a>0 <a href="#" class="ratingsicon"><i class="fas fa-reply"></i></a>REPLY</h5>
-        </div>
-
+        <asp:Repeater ID="PostRepeater" runat="server">
+             <itemtemplate>
+                 <div class="card-body" id="usercomment"><%# Eval("content ") %><br /><h5 class="card-text"><a href="#" class="usericon"><i class="fas fa-user"></i></a><a href="#" class="usertitle"><%# Eval("username") %></a> - posted on the <%# Eval("datePosted") %></h5> 
+                    <h5 class="card-text"><a href="#" class="ratingsicon"><i class="fas fa-thumbs-up"></i></a><%# Eval("likes") %> <a href="#" class="ratingsicon"><i class="fas fa-thumbs-down"></i></a><%# Eval("dislikes") %>
+                </div>
+            </itemtemplate>
+         </asp:Repeater>
+         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Post]"></asp:SqlDataSource>
     </div>
 <style>
         a{
@@ -76,6 +77,8 @@
             width: 25px;
             justify-content: center;
             align-items: center;
+            text-decoration:none;
+            color:black;
         }
         .card{
             width:50%;
@@ -101,5 +104,6 @@
             margin-right:10px;
         }
 </style>
+    </form>
     </form>
 </asp:Content>

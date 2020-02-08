@@ -105,7 +105,7 @@ namespace FinTrack.DAL
             sqlCmd.Parameters.AddWithValue("@paraDesc", exp.Description);
             sqlCmd.Parameters.AddWithValue("@paraCat", exp.Category);
             sqlCmd.Parameters.AddWithValue("@paraCost", exp.Cost);
-            sqlCmd.Parameters.AddWithValue("@paraDate", exp.Date.ToShortDateString());
+            sqlCmd.Parameters.AddWithValue("@paraDate", exp.Date);
 
             // Step 4 Open connection the execute NonQuery of sql command   
             myConn.Open();

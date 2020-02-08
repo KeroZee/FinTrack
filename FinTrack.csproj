@@ -298,8 +298,10 @@
     <Compile Include="BLL\Article.cs" />
     <Compile Include="BLL\Expense.cs" />
     <Compile Include="BLL\Post.cs" />
+    <Compile Include="BLL\PostComment.cs" />
     <Compile Include="BLL\Profiles.cs" />
     <Compile Include="DAL\ArticleDAO.cs" />
+    <Compile Include="DAL\PostCommentDAO.cs" />
     <Compile Include="DAL\ExpenseDAO.cs" />
     <Compile Include="DAL\PostDAO.cs" />
     <Compile Include="DAL\ProfileDAO.cs" />
