@@ -83,6 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddProfile.aspx" />
     <Content Include="AdminSearch.aspx" />
     <Content Include="App_Data\FinTrackDB.mdf" />
     <Content Include="App_Data\FinTrackDB_log.ldf">
@@ -175,6 +176,7 @@
     <Content Include="Learn.aspx" />
     <Content Include="LearnAdmin.aspx" />
     <Content Include="LearnAdminAdd.aspx" />
+    <Content Include="LearnAdminEdit.aspx" />
     <Content Include="LearnDetailed.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Mailbox.png" />
@@ -252,6 +254,13 @@
     <Content Include="Scripts\popper-utils.js.map" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddProfile.aspx.cs">
+      <DependentUpon>AddProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddProfile.aspx.designer.cs">
+      <DependentUpon>AddProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminSearch.aspx.cs">
       <DependentUpon>AdminSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -349,6 +358,13 @@
     </Compile>
     <Compile Include="LearnAdminAdd.aspx.designer.cs">
       <DependentUpon>LearnAdminAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LearnAdminEdit.aspx.cs">
+      <DependentUpon>LearnAdminEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LearnAdminEdit.aspx.designer.cs">
+      <DependentUpon>LearnAdminEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="LearnDetailed.aspx.cs">
       <DependentUpon>LearnDetailed.aspx</DependentUpon>
