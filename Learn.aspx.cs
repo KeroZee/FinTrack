@@ -44,7 +44,21 @@ namespace FinTrack
             int insCnt = art.UpdateViews(id, views);
             Response.Redirect("LearnDetailed.aspx");
         }
+        protected void BtnReadMore_Click(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;
 
+            Session["ArtID"] = b.CommandName;
+
+            string id = Session["ArtID"].ToString();
+
+            Article art = new Article();
+            art = art.GetArticleById(id);
+            int views = art.Views += 1;
+
+            int insCnt = art.UpdateViews(id, views);
+            Response.Redirect("LearnDetailed.aspx");
+        }
         protected void BtnAdmin_Click(object sender, EventArgs e)
         {
             Response.Redirect("LearnAdmin.aspx");

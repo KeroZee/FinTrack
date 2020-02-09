@@ -25,8 +25,7 @@ namespace FinTrack
                     LblAuthor.Text = art.Author.ToString();
                     LblLastUpdated.Text = art.LastUpdated.ToString();
                     LblViews.Text = art.Views.ToString();
-                    LblLikes.Text = art.Likes.ToString();
-                    LblComments.Text = art.Comments.ToString();
+                    Image.ImageUrl = art.Image.ToString();
 
                     var url = art.Link.ToString();
                     BtnLink.Attributes.Add("href", url);

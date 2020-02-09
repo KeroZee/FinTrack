@@ -1,6 +1,7 @@
 ﻿using FinTrack.BLL;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -31,9 +32,20 @@ namespace FinTrack
                 String author = TextboxAuthor.Text.ToString();
                 String link = TextboxLink.Text.ToString();
                 Boolean deleted = false;
-    
-                //Instantiate object
-                Article art = new Article(title, views, likes, comments, description, image, dateposted, author, link, lastupdated, deleted);
+
+                if (UploadImage.HasFile)
+                {
+                    string filename = Path.GetFileName(UploadImage.FileName);
+                    UploadImage.SaveAs(Server.MapPath("img/articleImages/") + filename);
+                    image = ("img/articleImages/" + filename);
+                }
+                else
+                {
+                    image = "img/articleImages/DefaultImage.jpg";
+                }
+
+                    //Instantiate object
+                    Article art = new Article(title, views, likes, comments, description, image, dateposted, author, link, lastupdated, deleted);
                 int insCnt = art.AddArticle();
                 Response.Redirect("LearnAdmin.aspx");
             }            
@@ -51,9 +63,21 @@ namespace FinTrack
                 result = false;
             }
 
+            if (TextboxTitle.Text.Length > 40)
+            {
+                errorList.Add("Title cannot be longer than 40 characters. <br/>");
+                result = false;
+            }
+
             if (String.IsNullOrEmpty(TextboxAuthor.Text))
             {
                 errorList.Add("Author cannot be empty. <br/>");
+                result = false;
+            }
+
+            if (TextboxAuthor.Text.Length > 24)
+            {
+                errorList.Add("Title cannot be longer than 24 characters. <br/>");
                 result = false;
             }
 
@@ -63,6 +87,26 @@ namespace FinTrack
                 result = false;
             }
 
+            if (String.IsNullOrEmpty(TextboxLink.Text))
+            {
+                errorList.Add("Link cannot be empty. <br/>");
+                result = false;
+            }
+
+            if (UploadImage.HasFile)
+            {
+                if (UploadImage.PostedFile.ContentType != "image/jpeg")
+                {
+                    errorList.Add("Only jpeg files are accepted. <br/>");
+                    result = false;
+                }
+                if (UploadImage.PostedFile.ContentLength > 1024000)
+                {
+                    errorList.Add("Image size cannot be larger than 1mb. <br/>");
+                    result = false;
+                }
+            }
+            
             return result;
 
 
