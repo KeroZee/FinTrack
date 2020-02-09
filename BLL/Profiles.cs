@@ -11,7 +11,7 @@ namespace FinTrack.BLL
         public int ID { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }   
-       // public DateTime DOB { get; set; }
+        //public DateTime DOB { get; set; }
         public string Fname { get; set; }
         public string Lname { get; set; }
         public string Bio { get; set; }
@@ -50,21 +50,36 @@ namespace FinTrack.BLL
             Question = question;
 
         }
-        public Profiles GetProfileById(string ID)
+        public Profiles GetProfileById(string email)
         {
             ProfileDAO DAO = new ProfileDAO();
-            return DAO.SelectById(ID);
+            return DAO.SelectById(email);
+        }
+
+        public List<Profiles> GetAllProfiles()
+        {
+            ProfileDAO DAO = new ProfileDAO();
+            return DAO.SelectAll();
         }
         public int AddProfile()
         {
             ProfileDAO DAO = new ProfileDAO();
             return (DAO.Insert(this));
         }
-        //public int LoginByID(string Email)
-        //{
-        //    ProfileDAO DAO = new ProfileDAO();
-        //    return (DAO.LoginCheck(Email));
-        //}
+
+       public int LoginCheckBy(string email, string password )
+       {
+            ProfileDAO DAO = new ProfileDAO();
+            return DAO.LoginCheck(email, password);
+
+        }
+
+        public int UpdateProfile(string userid, string fname, string lname, string bio, string country, string phone, string language, string nickname)
+        {
+            ProfileDAO dao = new ProfileDAO();
+            return dao.UpdateById(userid, fname, lname, bio, country, phone, language, nickname);
+        }
+        
     }
    
 
