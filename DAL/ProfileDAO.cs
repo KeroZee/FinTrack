@@ -37,7 +37,7 @@ namespace FinTrack.DAL
                 int id = int.Parse(row["userid"].ToString());
                 string email = row["email"].ToString();
                 string password = row["password"].ToString();
-                //DateTime dob = Convert.ToDateTime(row["DOB"].ToString());
+               //DateTime dob = Convert.ToDateTime(row["DOB"].ToString());
                 string fname = row["firstName"].ToString();
                 string lname = row["lastName"].ToString();
                 string bio = row["bio"].ToString();
@@ -87,7 +87,7 @@ namespace FinTrack.DAL
                 string language = row["language"].ToString();
                 string nickname = row["nickname"].ToString();
                 string acc_type = row["acc_type"].ToString();
-                //DateTime date_join = Convert.ToDateTime(row["date_join"].ToString());
+                //DateTime date_joined = Convert.ToDateTime(row["date_join"].ToString());
                 int question = int.Parse(row["question"].ToString());
 
                 Prof = new Profiles(id, email, password, fname, lname, bio, avatar, country, phone,language, nickname, acc_type, question);
@@ -128,8 +128,8 @@ namespace FinTrack.DAL
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "INSERT INTO Profile (email, password, Avatar, fname, lname, bio, country, phone, language, nickname)" +
-                             "VALUES (@paraemail, @parapassword, @paraAvatar, @parafname, @paralname, @parabio, @paracountry, @paraphone, @paralanguage, @paranickname)";
+            string sqlStmt = "INSERT INTO Profile (email, password, Avatar, fname, lname, bio, country, phone, language, nickname, question)" +
+                             "VALUES (@paraemail, @parapassword, @paraAvatar, @parafname, @paralname, @parabio, @paracountry, @paraphone, @paralanguage, @paranickname, @paraquestion)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -145,6 +145,8 @@ namespace FinTrack.DAL
             sqlCmd.Parameters.AddWithValue("@paraphone", Prof.Phone);
             sqlCmd.Parameters.AddWithValue("@paralanguage", Prof.Language);
             sqlCmd.Parameters.AddWithValue("@paranickname", Prof.Nickname);
+            sqlCmd.Parameters.AddWithValue("@paraquestion", Prof.Question);
+            //sqlCmd.Parameters.AddWithValue("@paradatejoined", Prof.Date_join);
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
 
@@ -152,18 +154,18 @@ namespace FinTrack.DAL
 
             return result;
         }
-        public int UpdateById(string userid, string fname, string lname, string bio, string country, string phone, string language, string nickname)
+        public int UpdateById(string email, string fname, string lname, string bio, string country, string phone, string language, string nickname)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
             string sqlStmt = "UPDATE Profile SET fname = @parafname, lname = @paralname, bio = @parabio, country = @paracountry," +
-                "phone = @paraphone, language = @paralanguage, nickname = @paranickname WHERE id = @paraid";
+                "phone = @paraphone, language = @paralanguage, nickname = @paranickname WHERE email = @paraemail";
 
             int result = 0;
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
 
-            sqlCmd.Parameters.AddWithValue("@paraid", userid);
+            sqlCmd.Parameters.AddWithValue("@paraemail", email);
             sqlCmd.Parameters.AddWithValue("@parafname", fname);
             sqlCmd.Parameters.AddWithValue("@paralname", lname);
             sqlCmd.Parameters.AddWithValue("@parabio", bio);
