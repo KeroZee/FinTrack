@@ -58,5 +58,21 @@ namespace FinTrack
             int insCnt = art.DeleteArticle(id, deleted);
             Response.Redirect("LearnAdmin.aspx");
         }
+
+        protected void BtnDetailed_Click(object sender, EventArgs e)
+        {
+            LinkButton b = (LinkButton)sender;
+
+            Session["ArtID"] = b.CommandName;
+
+            string id = Session["ArtID"].ToString();
+
+            Article art = new Article();
+            art = art.GetArticleById(id);
+            int views = art.Views += 1;
+
+            int insCnt = art.UpdateViews(id, views);
+            Response.Redirect("LearnDetailed.aspx");
+        }
     }
 }

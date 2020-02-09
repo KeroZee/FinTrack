@@ -46,7 +46,7 @@ namespace FinTrack.BLL
             Language = language;
             Nickname = nickname;
             Acc_type = acc_type;
-            //Date_join = date_join;
+            //Date_join = date_joined;
             Question = question;
 
         }
@@ -74,10 +74,10 @@ namespace FinTrack.BLL
 
         }
 
-        public int UpdateProfile(string userid, string fname, string lname, string bio, string country, string phone, string language, string nickname)
+        public int UpdateProfile(string email, string fname, string lname, string bio, string country, string phone, string language, string nickname)
         {
             ProfileDAO dao = new ProfileDAO();
-            return dao.UpdateById(userid, fname, lname, bio, country, phone, language, nickname);
+            return dao.UpdateById(email, fname, lname, bio, country, phone, language, nickname);
         }
         
     }

@@ -52,7 +52,7 @@ namespace FinTrack
 
                 else
                 {
-                    Response.Redirect("Register.aspx");
+                    errorList.Add("Please try again, credentials are wrong");
                 }
             }
         }

@@ -9,7 +9,7 @@
                     <div class="row mt-3">
                         <hr />
                         <div class="col-4 text-center">
-                            <asp:Image ID="Image1" runat="server" ImageUrl="~/img/DefaultImage.jpg" style="width: 200px; height: 200px;" />
+                            <asp:Image ID="Image" class="rounded" runat="server" ImageUrl="" style="width: 200px; height: 200px;" />
                         </div>
                         <div class="col-8">
                             <div class="row">
@@ -33,12 +33,6 @@
                                 <div class="col-6 text-muted">
                                     <i class ="far fa-eye"></i>
                                     <asp:Label ID="LblViews" runat="server"></asp:Label>
-                                    &nbsp
-                                    <i class ="far fa-thumbs-up"></i>
-                                    <asp:Label ID="LblLikes" runat="server"></asp:Label>
-                                    &nbsp
-                                    <i class="far fa-comment-alt"></i>
-                                    <asp:Label ID="LblComments" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-6 text-muted text-right"><i class="fas fa-clock mr-1"></i>
                                     Last Updated on:

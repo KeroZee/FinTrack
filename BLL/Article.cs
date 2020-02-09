@@ -61,10 +61,10 @@ namespace FinTrack.BLL
             return (dao.Insert(this));
         }
 
-        public int UpdateArticle(string id, string title, string description, string author, string link, string lastupdated)
+        public int UpdateArticle(string id, string title, string description, string image, string author, string link, string lastupdated)
         {
             ArticleDAO dao = new ArticleDAO();
-            return dao.UpdateById(id, title, description, author, link, lastupdated);
+            return dao.UpdateById(id, title, description, image, author, link, lastupdated);
         }
 
         public int DeleteArticle(string id, Boolean deleted)

@@ -2,6 +2,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
+    <style>
+        a:hover {
+            text-decoration:underline;
+        }   
+        .icons {
+            color:dimgray
+        }
+    </style>
+
     <form id="form1" runat="server">
 
         <div class="container">
@@ -20,19 +29,23 @@
                         <div class="card w-100">
                             <div class="row">
                                 <div class="col-2">
-                                    <asp:Image class="mt-3 mx-auto" runat="server" ImageUrl="/img/DefaultImage.jpg" style="display:block; width: 75px; height: 75px;" />
+                                    <asp:Image class="mt-3 mx-auto rounded" runat="server" ImageUrl='<%#Eval("Image") %>' style="display:block; width: 75px; height: 75px;" />
                                 </div>
                                 <div class="col-6">
                                     <div class="card-body">
-                                        <h5 class="card-title font-weight-bold text-primary"><%#Eval("title") %> <span class="card-text font-weight-normal text-muted">by</span> <span><%#Eval("author") %></span>
-                                        </h5>
+
+                                        <h5 class="card-title font-weight-bold text-primary">
+                                        <asp:LinkButton ID="BtnDetailed"  CommandName='<%# Eval("id")%>' OnClick="BtnDetailed_Click" runat="server">
+                                        <%# Eval("Title") %></asp:LinkButton> 
+                                        <span class="card-text font-weight-normal text-muted">by</span> 
+                                        <span><%# Eval("Author") %></span></h5>
+
                                         <h6 class="card-text mb-2 text-muted">
-                                            <span class="mr-2"><i class ="far fa-eye"></i> <%# Eval("Views") %></span>
-                                            <span class="mr-2"><i class ="far fa-thumbs-up"></i> <%# Eval("Likes") %></span>
-                                            <span class="mr-4"><i class="far fa-comment-alt"></i> <%# Eval("Comments") %></span>
+                                            <span class="mr-3"><%# Eval("Views")%> Views</span>
                                             <span class="mr-2">Updated: <%# Eval("LastUpdated") %></span>
                                             <span class="mr-2">Created: <%# Eval("DatePosted") %></span>
                                         </h6>
+
                                     </div>
                                 </div>
                                 <div class="col-4">

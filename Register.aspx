@@ -7,6 +7,14 @@
                 { %>
             <div class="alert alert-danger mt-2" role="alert"><%=errorList[0] %> </div>
             <% } %>
+        <div class="form-group" style =" margin:auto">
+            <label id="fname" for="TextBoxFname">First Name</label>
+            <asp:TextBox style="width:90%" ID="TextBoxFname" placeholder = "First Name" runat="server"></asp:TextBox>    
+        </div>
+        <div class="form-group" style =" margin:auto">
+            <label id="lname" for="TextBoxLname">Last Name</label>
+            <asp:TextBox style="width:90%" ID="TextBoxLname" placeholder = "Last Name" runat="server"></asp:TextBox>    
+        </div>
         <div class="form-group" style="margin:auto">
             <label id="exampleLabelEmail" for="TextBoxEmail">Email address</label>
             <asp:TextBox style ="width:90%" ID="TextBoxEmail" runat="server" placeholder="Email" TextMode="Email"></asp:TextBox>
@@ -17,9 +25,10 @@
         </div>
         <div class="form-group" style =" margin:auto">
             <label id="exampleLabelCPassword" for="TextBoxCPassword">Confirm Password</label>
-            <asp:TextBox style="width:90%" ID="TextBoxCPassword" placeholder = "Confirm Password" runat="server" TextMode="Password"></asp:TextBox>
-            
+            <asp:TextBox style="width:90%" ID="TextBoxCPassword" placeholder = "Confirm Password" runat="server" TextMode="Password"></asp:TextBox>    
         </div>
+        
+
         <%--<button id ="Submit" type="submit" class="btn btn-primary">Submit</button>--%>
         
         <asp:Button ID="btnSubmit" class="btn btn-primary" runat="server" Text="Submit" OnClick="btnSubmit_Click"/>
