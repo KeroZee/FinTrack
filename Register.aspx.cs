@@ -34,6 +34,15 @@ namespace FinTrack
                 errorList.Add("Password and Confirm Password do not match. <br/>");
                 result = false;
             }
+            if (String.IsNullOrEmpty(TextBoxFname.Text))
+            {
+                errorList.Add("Please enter your First name. <br/>");
+                result = false;
+            }
+            if (String.IsNullOrEmpty(TextBoxLname.Text))
+            {
+                errorList.Add("Please enter your Last name. <br/>");
+            }
             return result;
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -43,9 +52,11 @@ namespace FinTrack
                 String email = TextBoxEmail.Text.ToString();
                 String password = TextBoxPassword.Text.ToString();
                 String cppassword = TextBoxCPassword.Text.ToString();
+                String fname = TextBoxFname.Text.ToString();
+                String lname = TextBoxLname.Text.ToString();
             
 
-                Profiles prof = new Profiles(-1, email, password, "", "", "",  "", "","", "", "" ,"" , 0);
+                Profiles prof = new Profiles(-1, email, password, fname, lname, "",  "", "","", "", "" ,"" , 0);
                 int insCnt = prof.AddProfile();
                 if (insCnt == 1)
                 {

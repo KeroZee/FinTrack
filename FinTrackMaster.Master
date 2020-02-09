@@ -46,12 +46,22 @@
                 </li>
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item custom-item">
-                    <a class="nav-link" href="Login.aspx">Login</a>
-                </li>
-                <li class="nav-item custom-item">
-                    <a class="nav-link" href="Register.aspx">Register</a>
-                </li>
+                <asp:PlaceHolder ID="NotLoggedIn" runat="server">
+                    <li class="nav-item custom-item">
+                        <a class="nav-link" href="Login.aspx">Login</a>
+                    </li>
+                    <li class="nav-item custom-item">
+                        <a class="nav-link" href="Register.aspx">Register</a>
+                    </li>
+                </asp:PlaceHolder>
+                <asp:PlaceHolder ID="LoggedIn" runat="server">
+                    <li class="nav-item custom-item">
+                        <a class="nav-link" href="Profile.aspx">Profile</a>
+                    </li>
+                    <li class="nav-item custom-item">
+                        <a class="nav-link" href="Logout.aspx" id="logout">Logout</a>
+                    </li>
+                </asp:PlaceHolder>
             </ul>
         </div>
         <!-- Collapsible content -->
