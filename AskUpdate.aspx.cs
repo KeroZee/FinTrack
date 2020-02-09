@@ -14,6 +14,10 @@ namespace FinTrack
         {
             if (Page.IsPostBack == false)
             {
+                if (Session["email"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
                 if (Session["SId"] != null)
                 {
                     string id = Session["SId"].ToString();
@@ -30,11 +34,27 @@ namespace FinTrack
             }
         }
 
+        public void ShowToastr(Page page, string message, string title, string type)
+        {
+            Page.ClientScript.RegisterStartupScript(page.GetType(), "toastr_message", "toast(" + "'" + message + "','" + title + "','" + type.ToLower() + "')", true);
+        }
+
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            Post post = new Post();
-            post.UpdatePostById(Session["SId"].ToString(), DdlCategory.SelectedValue.ToString(), TbTitle.Text, TbContent.Text);
-            Response.Redirect("Ask.aspx");
+            if (TbTitle.Text == "")
+            {
+                ShowToastr(this, "The title field cannot be empty!", "Error", "error");
+            }
+            else if (TbContent.Text == "")
+            {
+                ShowToastr(this, "The content field cannot be empty!", "Error", "error");
+            }
+            else
+            {
+                Post post = new Post();
+                post.UpdatePostById(Session["SId"].ToString(), DdlCategory.SelectedValue.ToString(), TbTitle.Text, TbContent.Text);
+                Response.Redirect("Ask.aspx");
+            }
         }
 
         protected void BtnCancel_Click(object sender, EventArgs e)

@@ -13,6 +13,24 @@ namespace FinTrack {
     public partial class FinTrackMaster {
         
         /// <summary>
+        /// NotLoggedIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder NotLoggedIn;
+        
+        /// <summary>
+        /// LoggedIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder LoggedIn;
+        
+        /// <summary>
         /// head control.
         /// </summary>
         /// <remarks>

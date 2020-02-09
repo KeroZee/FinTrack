@@ -46,7 +46,7 @@ namespace FinTrack.DAL
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
-            String sqlstmt = "Select * from Post Order By dateposted DESC";
+            String sqlstmt = "Select * from Post Order By id DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             var dt = new DataTable();
             da.Fill(dt);
@@ -57,7 +57,7 @@ namespace FinTrack.DAL
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
-            String sqlstmt = "Select * from Post Order By dateposted";
+            String sqlstmt = "Select * from Post Order By id";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             var dt = new DataTable();
             da.Fill(dt);
@@ -86,7 +86,7 @@ namespace FinTrack.DAL
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            String sqlstmt = "SELECT * FROM Post WHERE category = @paraCate Order By dateposted DESC";
+            String sqlstmt = "SELECT * FROM Post WHERE category = @paraCate Order By id DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraCate", cate);
 
@@ -101,7 +101,7 @@ namespace FinTrack.DAL
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            String sqlstmt = "SELECT * FROM Post WHERE category = @paraCate Order By dateposted";
+            String sqlstmt = "SELECT * FROM Post WHERE category = @paraCate Order By id";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraCate", cate);
 
@@ -131,7 +131,7 @@ namespace FinTrack.DAL
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%' Order By dateposted DESC";
+            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%' Order By id DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraSearch", search);
 
@@ -145,7 +145,7 @@ namespace FinTrack.DAL
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%' Order By dateposted";
+            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%' Order By id";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraSearch", search);
 
@@ -174,7 +174,7 @@ namespace FinTrack.DAL
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%' and category = @paraCate Order By dateposted DESC";
+            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%' and category = @paraCate Order By id DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraSearch", search);
             da.SelectCommand.Parameters.AddWithValue("@paraCate", cate);
@@ -189,7 +189,7 @@ namespace FinTrack.DAL
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%' and category = @paraCate Order By dateposted";
+            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%' and category = @paraCate Order By id";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraSearch", search);
             da.SelectCommand.Parameters.AddWithValue("@paraCate", cate);

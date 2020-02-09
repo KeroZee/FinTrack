@@ -12,6 +12,7 @@
                     <div class="dropdown-menu">
                         <asp:Button ID="BtnEdit" runat="server" Text="Edit" CssClass="dropdown-item" OnClick="BtnEdit_Click" />
                         <asp:Button ID="BtnDelete" runat="server" Text="Delete" CssClass="dropdown-item" OnClick="BtnDelete_Click" />
+                        <asp:LinkButton ID="BtnReportPost" runat="server" Text="Report" CssClass="dropdown-item"></asp:LinkButton>
                     </div>
                 </div>
         </h5>
@@ -42,8 +43,17 @@
         <hr>
         <asp:Repeater ID="PostRepeater" runat="server">
              <itemtemplate>
-                 <div class="card-body" id="usercomment"><%# Eval("content ") %><br /><h5 class="card-text"><a href="#" class="usericon"><i class="fas fa-user"></i></a><a href="#" class="usertitle"><%# Eval("username") %></a> - posted on the <%# Eval("datePosted") %></h5> 
-                    <h5 class="card-text"><a href="#" class="ratingsicon"><i class="fas fa-thumbs-up"></i></a><%# Eval("likes") %> <a href="#" class="ratingsicon"><i class="fas fa-thumbs-down"></i></a><%# Eval("dislikes") %>
+                 <div class="card-body" id="usercomment"><%# Eval("content") %><br /><h5 class="card-text"><a href="#" class="usericon"><i class="fas fa-user"></i></a><a href="#" class="usertitle"><%# Eval("username") %></a> - posted on the <%# Eval("datePosted") %></h5> 
+                    <h5 class="card-text"><a href="#" class="ratingsicon"><i class="fas fa-thumbs-up"></i></a><%# Eval("likes") %> <a href="#" class="ratingsicon"><i class="fas fa-thumbs-down"></i></a><%# Eval("dislikes") %> 
+                    <div class="btn-group dropright" style="color:black; padding-left:8px;">
+                    <asp:LinkButton ID="LbtnToggle" runat="server" OnClick="LbtnToggle_Click" CommandName='<%# Eval("id")%>' data-toggle="dropdown"  aria-expanded="false">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </asp:LinkButton>
+                    <div class="dropdown-menu">
+                        <asp:LinkButton ID="BtnDeleteComm" runat="server" Text="Delete" Visible='<%#(Eval("accountId").ToString() == checkcomm) || (admin == "yes")%>' CommandName='<%# Eval("id")%>' CssClass="dropdown-item" OnClick="BtnDeleteComm_Click"></asp:LinkButton>
+                        <asp:LinkButton ID="BtnReportComment" runat="server" Text="Report" CommandName='' CssClass="dropdown-item"></asp:LinkButton>
+                    </div>
+                </div>
                 </div>
             </itemtemplate>
          </asp:Repeater>

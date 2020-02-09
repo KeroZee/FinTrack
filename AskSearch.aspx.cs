@@ -47,19 +47,13 @@ namespace FinTrack
             }
                     
         }
+
         private void GetPosts()
         {
             string search = Session["SSearch"].ToString();
             Post post = new Post();
             DataTable list = post.GetSearchPopular(search);
-            if (list != null)
-            {
-                RefreshRepeater(list);
-            }
-            else
-            {
-
-            }
+            RefreshRepeater(list);
 
         }
         private void RefreshRepeater(DataTable list)

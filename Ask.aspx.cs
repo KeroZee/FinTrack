@@ -35,19 +35,23 @@ namespace FinTrack
         {
             if (Page.IsPostBack) return;
             GetPosts();
+            if (Session["ToastMessage"] != null)
+            {
+                ShowToastr(this, Session["ToastMessage"].ToString(), Session["ToastTitle"].ToString(), Session["ToastType"].ToString());
+                Session["ToastMessage"] = null;
+                Session["ToastTitle"] = null;
+                Session["ToastType"] = null;
+            }
+        }
+        public void ShowToastr(Page page, string message, string title, string type)
+        {
+            Page.ClientScript.RegisterStartupScript(page.GetType(), "toastr_message", "toast(" + "'" + message + "','" + title + "','" + type.ToLower() + "')", true);
         }
         private void GetPosts()
         {
             Post post = new Post();
             DataTable list = post.GetAllPopularPost();
-            if (list != null)
-            {
-                RefreshRepeater(list);
-            }
-            else
-            {
-                
-            }
+            RefreshRepeater(list);
             
         }
         private void RefreshRepeater(DataTable list)

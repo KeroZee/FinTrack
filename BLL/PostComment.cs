@@ -53,6 +53,11 @@ namespace FinTrack.BLL
         public int DeleteCommentsById(string id)
         {
             PostCommentDAO dao = new PostCommentDAO();
+            return dao.Delete(id);
+        }
+        public int DeleteAllComments(string id)
+        {
+            PostCommentDAO dao = new PostCommentDAO();
             return dao.DeletePostComments(id);
         }
     }

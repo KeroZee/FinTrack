@@ -128,8 +128,8 @@ namespace FinTrack.DAL
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "INSERT INTO Profile (email, password, Avatar, fname, lname, bio, country, phone, language, nickname)" +
-                             "VALUES (@paraemail, @parapassword, @paraAvatar, @parafname, @paralname, @parabio, @paracountry, @paraphone, @paralanguage, @paranickname)";
+            string sqlStmt = "INSERT INTO Profile (email, password, Avatar, fname, lname, bio, country, phone, language, nickname, question)" +
+                             "VALUES (@paraemail, @parapassword, @paraAvatar, @parafname, @paralname, @parabio, @paracountry, @paraphone, @paralanguage, @paranickname, @paraquestion)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -145,6 +145,7 @@ namespace FinTrack.DAL
             sqlCmd.Parameters.AddWithValue("@paraphone", Prof.Phone);
             sqlCmd.Parameters.AddWithValue("@paralanguage", Prof.Language);
             sqlCmd.Parameters.AddWithValue("@paranickname", Prof.Nickname);
+            sqlCmd.Parameters.AddWithValue("@paraquestion", Prof.Question);
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
 

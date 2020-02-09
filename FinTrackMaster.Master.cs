@@ -11,7 +11,16 @@ namespace FinTrack
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if ((Session["email"]) != null)
+            {
+                NotLoggedIn.Visible = false;
+                LoggedIn.Visible = true;
+            }
+            else
+            {
+                NotLoggedIn.Visible = true;
+                LoggedIn.Visible = false;
+            }
         }
     }
 }
