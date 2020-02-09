@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinTrack.BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,17 @@ namespace FinTrack
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (!IsPostBack) {
+                    Profiles prof = new Profiles();
+                    prof = prof.GetProfileById(Session["email"].ToString());
+                    email.Text = "Email: " + prof.Email;
+                    country.Text = "Country: " + prof.Country;
+                    phone.Text = "Phone: " + prof.Phone;
+                    language.Text = "Language: " + prof.Language;
+                    nickname.Text = "Nickname" + prof.Nickname;
+                
+            }
 
         }
 

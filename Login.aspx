@@ -2,22 +2,21 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <form id="form1" runat="server">
     <div style="text-align : center" id="box">
-        <% if ((errormsg.Any()))
-                { %>
-            <div class="alert alert-danger mt-2" role="alert"><%=errormsg[0] %> </div>
-            <% } %>
+        
         <h3>Login to Fintrack</h3>
+        <% if ((errorList.Any()))
+                { %>
+            <div class="alert alert-danger mt-2" role="alert"><%=errorList[0] %> </div>
+            <% } %>
         <div class="form-group" style="margin:auto">
             <br />
             <label id="EmailI" for="exampleInputEmail1">Email</label>
-                <asp:TextBox style="width:90%" class="form-control" ID="exampleInputEmail1" placeholder="Email" runat="server" TextMode="Email"></asp:TextBox>     
-            <small style ="margin-right:45%" id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-         </div>
+                <asp:TextBox style="width:90%" class="form-control" id="exampleInputEmail1" placeholder="Email" runat="server" TextMode="Email"></asp:TextBox>  
         <div class="form-group" style="margin:auto">
             <label id="PasswordI" for="exampleInputPassword1" >Password</label>
-            <asp:TextBox style="width:90%" class="form-control" ID="exampleInputPassword1" placeholder="Password" Textmode ="Password" runat="server"></asp:TextBox>
+            <asp:TextBox style="width:90%" class="form-control" id="exampleInputPassword1" placeholder="Password" Textmode ="Password" runat="server"></asp:TextBox>
         </div>
-        <button type="submit" id="btnLogin" class="btn btn-primary">Login</button>
+        <asp:Button runat="server" Text="Login" id="btnLogin" class="btn btn-primary" type="Submit" OnClick="btnLogin_Click1"/>
     </div>
          
     </form>

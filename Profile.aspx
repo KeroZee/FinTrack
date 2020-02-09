@@ -8,16 +8,16 @@
         <div id="card">
             <div>
             <img src="Mailbox.png"  style="width:60%; height:277px;" />
-            <h3 style="margin-left:80px">Peter Doe</h3>
+            <h3 style="margin-left:80px">@parafname</h3>
             <asp:Button runat="server" Text="EDIT" style ="color:aqua;" class ="btn btn-link" OnClick="Unnamed1_Click"/>
             <div id="info">
                 <ul style="list-style-type:none;">
-                <li><p>Email: <placeholder><strong>Peter_P@abc.com</strong></placeholder></p></li>
-                <li><p>Country: <placeholder><strong>Singapore</strong></placeholder></p></li>
-                <li><p>Singapore: <placeholder><strong>90123456</strong></placeholder></p></li>
+                <li><asp:Label runat="server" Text="Label" id="email"></asp:Label></li>
+                <li><asp:Label runat="server" Text="Label" id="country"></asp:Label></li>
+                <li><asp:Label runat="server" Text="Label" id="phone"></asp:Label></li>
                 <li><p>DOB: <placeholder><strong>01/01/01</strong></placeholder></p></li>
                 <li><p>Date Joined: <placeholder><strong>01/01/01</strong></placeholder></p></li>
-                <li><p>Language: <placeholder><strong>English</strong></placeholder></p></li>
+                <li><asp:Label runat="server" Text="Label" id="language"></asp:Label></li>
                 </ul>
                 </div>
                 </div>
@@ -25,9 +25,9 @@
             </div>
             <div class="col-md-6">
             <div class="card">
-            <p>Bio: <textarea rows="4" cols="50" readonly="readonly">Hi</textarea></p>
-            <p>Nickname: <placeholder><strong>Pete</strong></placeholder></p>
-            <p>Nickname: <placeholder><strong>User</strong></placeholder></p>
+            <asp:TextBox runat="server" id="bio" MaxLength="100" ReadOnly="True" Rows="5" TextMode="MultiLine"></asp:TextBox>
+            <asp:Label runat="server" Text="Label" id="nickname"></asp:Label>
+            <p>UserType: <placeholder"><strong>User</strong></placeholder></p>
             <p>Questions Asked: <a href="#">12</a></p>
             <button class="btn btn-link" style="color:aqua">Submit a suggestion</button>
             </div>  

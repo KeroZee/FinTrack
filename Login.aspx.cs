@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinTrack.BLL;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -15,33 +16,45 @@ namespace FinTrack
             
         }
 
-        protected void btnLogin_Click (object sender, EventArgs e){
-            if (ValidateInput())
-            {
-                Response.Redirect("Profile.aspx");
-            }
-      
-          
-        }
-        public List<String> errormsg = new List<String>();
-        private bool ValidateInput()
+        public List<String> errorList = new List<String>();
+        private bool Validated()
         {
             bool result = true;
 
             if (String.IsNullOrEmpty(exampleInputEmail1.Text))
             {
-                errormsg.Add("Please fill in your email");
+                errorList.Add("Please fill in your email. <br/>");
                 result = false;
             }
             if (String.IsNullOrEmpty(exampleInputPassword1.Text))
             {
-                errormsg.Add("Please fill in your password");
-                result = true;
+                errorList.Add("Please fill in your password. <br/>");
+                result = false;
             }
            
             return result;
         }
 
-        
+        protected void btnLogin_Click1(object sender, EventArgs e)
+        {
+            if (Validated())
+            {
+                String email = exampleInputEmail1.Text.Trim();
+                String password = exampleInputPassword1.Text.Trim();
+
+                Profiles prof = new Profiles();
+                int Count = prof.LoginCheckBy(email,password);
+                if(Count == 1) {
+                
+                    Session["email"] = exampleInputEmail1.Text;
+                    Response.Redirect("Profile.aspx"); 
+                }
+
+                else
+                {
+                    Response.Redirect("Register.aspx");
+                }
+            }
+        }
     }
 }
