@@ -80,11 +80,11 @@ namespace FinTrack.BLL
             return dao.UpdateById(email, fname, lname, bio, country, phone, language, nickname, dob, image );
         }
 
-        //public Post GetPostCountById(string accid)
-        //{
-        //     ProfileDAO DAO = new ProfileDAO();
-        //    return DAO.CountQuestionsById(accid);
-        //}
+        public int GetPostCountById(string accid)
+        {
+             ProfileDAO DAO = new ProfileDAO();
+            return DAO.CountQuestionsById(accid);
+        }
         
     }
    
