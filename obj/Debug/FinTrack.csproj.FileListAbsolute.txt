@@ -27,12 +27,7 @@ C:\Users\Benedict\source\repos\FinTrack\FinTrack\bin\roslyn\vbc.exe.config
 C:\Users\Benedict\source\repos\FinTrack\FinTrack\bin\roslyn\vbc.rsp
 C:\Users\Benedict\source\repos\FinTrack\FinTrack\bin\roslyn\VBCSCompiler.exe
 C:\Users\Benedict\source\repos\FinTrack\FinTrack\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\Benedict\source\repos\FinTrack\FinTrack\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Benedict\source\repos\FinTrack\FinTrack\bin\Newtonsoft.Json.dll
-C:\Users\Benedict\source\repos\FinTrack\FinTrack\bin\System.Net.Http.Formatting.dll
-C:\Users\Benedict\source\repos\FinTrack\FinTrack\bin\System.Web.Http.dll
-C:\Users\Benedict\source\repos\FinTrack\FinTrack\bin\System.Web.Http.WebHost.dll
-C:\Users\Benedict\source\repos\FinTrack\FinTrack\bin\Newtonsoft.Json.xml
 C:\Users\Benedict\source\repos\FinTrack\FinTrack\bin\System.Net.Http.Formatting.xml
 C:\Users\Benedict\source\repos\FinTrack\FinTrack\bin\System.Web.Http.xml
 C:\Users\Benedict\source\repos\FinTrack\FinTrack\bin\System.Web.Http.WebHost.xml

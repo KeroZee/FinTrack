@@ -31,7 +31,7 @@ namespace FinTrack
                 string desc = txtUpdateDesc.Text.ToString();
                 int id = Convert.ToInt16(txtID.Text);
                 Expense exp = new Expense();
-                exp = new Expense(id, txtUpdateDesc.Text, ddlCat.Text, cost, now.Date);
+                exp = new Expense(id, txtUpdateDesc.Text, ddlCat.Text, cost, now.Date, exp.Email);
                 int result = exp.UpdateExpense();
                 if (result == 1)
                 {

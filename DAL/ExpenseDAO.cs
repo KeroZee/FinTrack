@@ -42,7 +42,8 @@ namespace FinTrack.DAL
                 DateTime DatePosted = Convert.ToDateTime(row["date"].ToString());
                 string expenseCategory = row["category"].ToString();
                 double expenseCost = Convert.ToDouble(row["price"].ToString());
-                Expense obj = new Expense(expenseId, description, expenseCategory, expenseCost, DatePosted);
+                string email = row["email"].ToString();
+                Expense obj = new Expense(expenseId, description, expenseCategory, expenseCost, DatePosted, email);
                 expenseList.Add(obj);
             }
 
@@ -76,7 +77,8 @@ namespace FinTrack.DAL
                 DateTime DatePosted = Convert.ToDateTime(row["date"].ToString());
                 string expenseCategory = row["category"].ToString();
                 double expenseCost = Convert.ToDouble(row["price"].ToString());
-                Expense obj = new Expense(expenseId, description, expenseCategory, expenseCost, DatePosted);
+                string email = row["email"].ToString();
+                Expense obj = new Expense(expenseId, description, expenseCategory, expenseCost, DatePosted, email);
                 expenseList.Add(obj);
             }
 
@@ -119,7 +121,7 @@ namespace FinTrack.DAL
         }
         public int Update(Expense exp)
         {
-            int result = 1;
+            int result = 0;
             SqlCommand sqlCmd = new SqlCommand();
 
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
@@ -207,7 +209,8 @@ namespace FinTrack.DAL
                 DateTime DatePosted = Convert.ToDateTime(row["date"].ToString());
                 string expenseCategory = row["category"].ToString();
                 double expenseCost = Convert.ToDouble(row["price"].ToString());
-                Expense obj = new Expense(expenseId, description, expenseCategory, expenseCost, DatePosted);
+                string email = row["email"].ToString();
+                Expense obj = new Expense(expenseId, description, expenseCategory, expenseCost, DatePosted, email);
                 expenseList.Add(obj);
             }
             return expenseList;
@@ -222,7 +225,7 @@ namespace FinTrack.DAL
             SqlConnection myConn = new SqlConnection(DBConnect);
 
             //Step 2 -  Create a DataAdapter to retrieve data from the database table
-            string sqlStmt = "Select * from Expense WHERE email = @paraEmail";
+            string sqlStmt = "Select * from Expense WHERE email ='" + email + "'";
             sqlCmd.Parameters.AddWithValue("@paraEmail", email);
             SqlDataAdapter da = new SqlDataAdapter(sqlStmt, myConn);
 
@@ -243,7 +246,8 @@ namespace FinTrack.DAL
                 DateTime DatePosted = Convert.ToDateTime(row["date"].ToString());
                 string expenseCategory = row["category"].ToString();
                 double expenseCost = Convert.ToDouble(row["price"].ToString());
-                Expense obj = new Expense(expenseId, description, expenseCategory, expenseCost, DatePosted);
+                string expenseEmail = row["email"].ToString();
+                Expense obj = new Expense(expenseId, description, expenseCategory, expenseCost, DatePosted, expenseEmail);
                 expenseList.Add(obj);
             }
             return expenseList;

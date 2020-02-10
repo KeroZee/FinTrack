@@ -19,6 +19,20 @@ namespace FinTrack
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+        }
+
+        protected void gvExpense_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvExpense_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+            
+        protected void btnSearch_Click1(object sender, EventArgs e)
+        {
             Expense exp = new Expense();
             searchList = exp.RetrieveDataByEmail(txtSearch.Text);
             gvExpense.Visible = true;
