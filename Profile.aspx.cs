@@ -11,7 +11,8 @@ namespace FinTrack
     public partial class Profile : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {   
+            
             
             if (!IsPostBack) {
                 if(Session["email"] != null) { 
@@ -25,7 +26,16 @@ namespace FinTrack
                     Name.Text = prof.Fname + " " + prof.Lname;
                     bio.Text = prof.Bio;
                     Question.Text = prof.Question.ToString();
+                    acc_type.Text = "Account type: " + prof.Acc_type.ToString();
+                    date_joined.Text = "Date Joined: " + prof.Date_join.ToString();
+                    dob.Text = "Date of Birth: " + prof.DOB.ToString();
+                    imageshow.ImageUrl = prof.Avatar.ToString();
 
+
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
                 }
 
             }

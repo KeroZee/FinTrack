@@ -7,19 +7,20 @@
         <div class="col-md-4">
         <div id="card">
             <div>
-            <img src="Mailbox.png"  style="width:60%; height:277px;" />
+                <asp:Image ID="imageshow" runat="server" ImageUrl="img/DefaultImage.jpg" style="width:200px; height:200px; "></asp:Image>
             <br />
-            <asp:Label runat="server" id="Name" style="margin-left:80px" Text=""></asp:Label>
+            <asp:Label runat="server" id="Name" style="margin-left:80px; font-size:40px;" Text=""></asp:Label>
             <br />
             <asp:Button runat="server" Text="EDIT" style ="color:aqua;" class ="btn btn-link" OnClick="Unnamed1_Click"/>
             <div id="info">
                 <ul style="list-style-type:none;">
-                <li><asp:Label runat="server" Text="" id="email"></asp:Label></li>
-                <li><asp:Label runat="server" Text="" id="country"></asp:Label></li>
-                <li><asp:Label runat="server" Text="" id="phone"></asp:Label></li>
-                <li><asp:Label runat="server" Text="date of birth" id="dob"></asp:Label></li>
-                <li><asp:Label runat="server" Text="date joined" id="date_joined"></asp:Label></li>
-                <li><asp:Label runat="server" Text="" id="language"></asp:Label></li>
+                <li><asp:Label runat="server" Text="" id="email" style="font-size:20px;"></asp:Label></li>
+                <li><asp:Label runat="server" Text="" id="country" style="font-size:20px;"></asp:Label></li>
+                <li><asp:Label runat="server" Text="" id="phone" style="font-size:20px;"></asp:Label></li>
+                <li><asp:Label runat="server" Text="date of birth" id="dob" style="font-size:20px;"></asp:Label></li>
+                <li><asp:Label runat="server" Text="date joined" id="date_joined" style="font-size:20px;"></asp:Label></li>
+                <li><asp:Label runat="server" Text="" id="language" style="font-size:20px;"></asp:Label></li>
+
                 </ul>
                 </div>
                 </div>
@@ -28,11 +29,10 @@
             <div class="col-md-6">
             <div class="card">
             <asp:TextBox runat="server" id="bio" MaxLength="100" ReadOnly="True" Rows="5" TextMode="MultiLine"></asp:TextBox>
-            <asp:Label runat="server" Text="" id="nickname"></asp:Label>
-            <p>UserType: <placeholder"><strong>User</strong></placeholder></p>
+            <asp:Label runat="server" Text="" id="nickname" style="font-size:20px;"></asp:Label>
+            <asp:Label runat="server" Text="Label" id="acc_type" style="font-size:20px;"></asp:Label>
             <p>Questions Asked: </p>
             <asp:LinkButton runat="server" id="Question"></asp:LinkButton>
-            <button class="btn btn-link" style="color:aqua">Submit a suggestion</button>
             </div>  
                </div>
        </div>
@@ -40,11 +40,15 @@
             
     </form>
     <style>
+  .imageshow{
+      width:200px;
+      height:200px;
+  }  
   .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin: auto;
-  position:sticky;
-  margin-top:10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      margin: auto;
+      position:sticky;
+      margin-top:10px;
 }
    #card {
        position:relative;

@@ -37,13 +37,19 @@
     
     </form>
     <style>
-        #exampleInputEmail1{
+        #fname{
+            margin-right:78%;
+        }
+        #lname{
+            margin-right:78%;
+        }
+        #TextBoxEmail{
             margin-left: 30px;
         }
-        #exampleInputPassword1{
+        #TextBoxPassword{
             margin-left: 30px;
         }
-        #exampleInputCPassword1{
+        #TextBoxCPassword{
             margin-left: 30px;
         }
         #exampleLabelEmail{

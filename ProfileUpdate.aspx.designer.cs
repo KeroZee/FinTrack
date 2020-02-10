@@ -148,6 +148,24 @@ namespace FinTrack {
         protected global::System.Web.UI.WebControls.TextBox tbNickname;
         
         /// <summary>
+        /// tbDOB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbDOB;
+        
+        /// <summary>
+        /// tbImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbImage;
+        
+        /// <summary>
         /// btnUpdate control.
         /// </summary>
         /// <remarks>

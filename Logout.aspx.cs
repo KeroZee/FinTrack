@@ -12,7 +12,7 @@ namespace FinTrack
         protected void Page_Load(object sender, EventArgs e)
         {
             Session.Abandon();
-            Response.Redirect("Login.aspx");
+            Response.Redirect("login.aspx");
         }
     }
 }
