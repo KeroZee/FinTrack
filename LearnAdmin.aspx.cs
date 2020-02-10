@@ -11,8 +11,34 @@ namespace FinTrack
     public partial class LearnAdmin : System.Web.UI.Page
     {
         public List<Article> artList;
+        public Boolean adminaccess = false;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if (Session["email"] != null)
+                {
+                    String email = Session["email"].ToString();
+                    Profiles prof = new Profiles();
+                    prof = prof.GetProfileById(email);
+                    var acctype = prof.Acc_type.ToString();
+
+                    if (acctype == "Admin")
+                    {
+                        adminaccess = true;
+                    }
+                    else
+                    {
+                        adminaccess = false;
+                        Response.Redirect("Learn.aspx");
+                    }
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
+            }
+
             Fill();
         }
 
