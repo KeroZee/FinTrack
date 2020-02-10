@@ -8,37 +8,47 @@
                 { %>
             <div class="alert alert-danger mt-2" role="alert"><%=errorList[0] %> </div>
             <% } %>
-        <div class="form-group" id="inputform" style="margin:auto">
-            <label id="EmailI" for="exampleInputEmail1">Email</label>
+        <div class="form-group" id="inputform" style="margin:auto; text-align:center;">
+            <div class="container">
+                <div class="mt-2 pl-4">
+            <label id="EmailI" for="exampleInputEmail1">Email address</label>
+                    <br />
             <asp:TextBox style="width:90%" class="form-control" id="exampleInputEmail1" placeholder="Email" runat="server" TextMode="Email"></asp:TextBox>  
-        <div class="form-group" style="margin:auto">
+            </div>
+            <div class="mt-2 pl-4">
             <label id="PasswordI" for="exampleInputPassword1" >Password</label>
+                <br />
             <asp:TextBox style="width:90%" class="form-control" id="exampleInputPassword1" placeholder="Password" Textmode ="Password" runat="server"></asp:TextBox>
-        </div>
+            </div>
+        <div class="mt-4">
         <asp:Button runat="server" Text="Login" id="btnLogin" class="btn btn-primary" type="Submit" OnClick="btnLogin_Click1"/>
+        </div>
+                </div>
+          </div>
     </div>
          
     </form>
     <style>
-        #exampleInputEmail1{
+        /*#exampleInputEmail1{
             margin-left: 30px;
-        }
-        exampleInputPassword1{
-            margin-left: 30px;
-        }
+        }*/
+        /*exampleInputPassword1{
+            margin-left: 40px;
+        }*/
         #EmailI{
-            margin-right: 85%;
+            margin-right: 80%;
         }
         #PasswordI{
-            margin-right:78%;
+            margin-right:85%;
         }
         #box{
             margin:auto;
             margin-top:50px;
             width:40%;
             border:1px solid black;
-            position:relative;            
+            position:relative;
         }
+        
 
     </style>
 </asp:Content>

@@ -2,40 +2,62 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
     <form id="form1" runat="server">
+        
         <div class="row">
 
         <div class="col-md-4">
         <div id="card">
-            <div>
-                <asp:Image ID="imageshow" runat="server" ImageUrl="img/DefaultImage.jpg" style="width:200px; height:200px; "></asp:Image>
-            <br />
-            <asp:Label runat="server" id="Name" style="margin-left:80px; font-size:40px;" Text=""></asp:Label>
-            <br />
+            <div class="container">
+            <div class="mt-2" style="text-align:center;">
+             <asp:Image ID="imageshow" runat="server" ImageUrl="img/DefaultImage.jpg" style="width:200px; height:200px; "></asp:Image>
+                <br />
+            
+            <asp:Label runat="server" id="Name" style="font-size:40px;" Text=""></asp:Label>
+            
+            </div>
+            
             <asp:Button runat="server" Text="EDIT" style ="color:aqua;" class ="btn btn-link" OnClick="Unnamed1_Click"/>
-            <div id="info">
+            <div id="info" class="mt-2">
+                <div class=" mr-5">
                 <ul style="list-style-type:none;">
                 <li><asp:Label runat="server" Text="" id="email" style="font-size:20px;"></asp:Label></li>
                 <li><asp:Label runat="server" Text="" id="country" style="font-size:20px;"></asp:Label></li>
-                <li><asp:Label runat="server" Text="" id="phone" style="font-size:20px;"></asp:Label></li>
+                <li><asp:Label runat="server" Text="" id="phone" TextMode="Phone" style="font-size:20px;"></asp:Label></li>
                 <li><asp:Label runat="server" Text="date of birth" id="dob" style="font-size:20px;"></asp:Label></li>
                 <li><asp:Label runat="server" Text="date joined" id="date_joined" style="font-size:20px;"></asp:Label></li>
                 <li><asp:Label runat="server" Text="" id="language" style="font-size:20px;"></asp:Label></li>
 
+
                 </ul>
                 </div>
                 </div>
+                </div>
             </div>
             </div>
+            
+          
+            
             <div class="col-md-6">
             <div class="card">
-            <asp:TextBox runat="server" id="bio" MaxLength="100" ReadOnly="True" Rows="5" TextMode="MultiLine"></asp:TextBox>
+            <div class ="container">
+            <div class="mt-3">
+            <asp:TextBox runat="server" id="bio" MaxLength="100" ReadOnly="True" Rows="5" TextMode="MultiLine" placeholder="Bio" style="width:80%;"></asp:TextBox>
+            </div> 
+            <div class="mt-3">
             <asp:Label runat="server" Text="" id="nickname" style="font-size:20px;"></asp:Label>
+            </div>
+            <div class="mt-3">
             <asp:Label runat="server" Text="Label" id="acc_type" style="font-size:20px;"></asp:Label>
-            <p>Questions Asked: </p>
-            <asp:LinkButton runat="server" id="Question"></asp:LinkButton>
+            </div>
+            <div class="mt-3">
+                <asp:Label runat="server" id="Question" Text=""></asp:Label>
+            </div>
             </div>  
                </div>
-       </div>
+        </div>
+        </div>
+       
+   
 
             
     </form>
