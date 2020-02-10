@@ -16,7 +16,10 @@
     <form id="form1" runat="server">
         <div class="container">
 
+            <% if (adminaccess)
+                { %>
             <asp:LinkButton ID="SubmitBtn" runat="server" OnClick="BtnAdmin_Click" CssClass="btn btn-info btn-block mt-2">Go to Admin Page</asp:LinkButton>
+            <% } %>
 
             <asp:SqlDataSource
                 ID="ArticleDatasource"

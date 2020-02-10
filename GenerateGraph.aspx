@@ -1,25 +1,22 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FinTrackMaster.Master" AutoEventWireup="true" CodeBehind="GenerateGraph.aspx.cs" Inherits="FinTrack.GenerateGraph" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <form id="form1" runat="server">
-        <asp:Label ID="Label1" runat="server" Text="Select Graph Type : "></asp:Label>
-        <asp:DropDownList ID="ddlGraphType" runat="server" OnSelectedIndexChanged="ddlGraphType_SelectedIndexChanged">
-        </asp:DropDownList>
-        <br />
-        <asp:Chart ID="ExpenseChart" runat="server" DataSourceID="SqlDataSource1">
-            <Titles>
-                <asp:Title Text="Cost of Expense"></asp:Title>
-            </Titles>
-            <Series>
-                <asp:Series ChartType="Column" Name="ExpenseSeries" XValueMember="date" YValueMembers="price">
+        <div align="center" dir="auto">
+                    <H1>Your Expense Overview</H1>
+            <asp:Chart ID="ExpenseChart" runat="server" Height="456px" Width="1420px" style="font-weight:bold">
+                <series>
+                <asp:Series Name="Series1">
                 </asp:Series>
-            </Series>
-            <ChartAreas>
+            </series>
+                <chartareas>
                 <asp:ChartArea Name="ChartArea1">
-                    <AxisX Title="Date"></AxisX>
+                    <AxisX Title="Category"></AxisX>
                     <AxisY Title="Cost"></AxisY>
                 </asp:ChartArea>
-            </ChartAreas>
-        </asp:Chart>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [category], [date], [price] FROM [Expense]"></asp:SqlDataSource>
+            </chartareas>
+            </asp:Chart>
+        </div>
+        <br />
     </form>
 </asp:Content>

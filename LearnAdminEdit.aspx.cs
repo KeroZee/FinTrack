@@ -22,7 +22,6 @@ namespace FinTrack
                     art = art.GetArticleById(id);
                     TextboxTitle.Text = art.Title.ToString();
                     TextboxDescription.Text = art.Description.ToString();
-                    TextboxAuthor.Text = art.Author.ToString();
                     TextboxLink.Text = art.Link.ToString();
                 }
                 else
@@ -42,7 +41,6 @@ namespace FinTrack
 
                 String title = TextboxTitle.Text.ToString();                
                 String description = TextboxDescription.Text.ToString();
-                String author = TextboxAuthor.Text.ToString();
                 var dateAndTime = DateTime.Now;
                 String lastupdated = dateAndTime.ToShortDateString();
                 String link = TextboxLink.Text.ToString();
@@ -62,7 +60,7 @@ namespace FinTrack
                 //Get Article
                
                 art = art.GetArticleById(id);
-                int insCnt = art.UpdateArticle(id, title, description, image, author, link, lastupdated);
+                int insCnt = art.UpdateArticle(id, title, description, image, link, lastupdated);
                 Response.Redirect("LearnAdmin.aspx");
             }
         }
@@ -82,18 +80,6 @@ namespace FinTrack
             if (TextboxTitle.Text.Length > 40)
             {
                 errorList.Add("Title cannot be longer than 40 characters. <br/>");
-                result = false;
-            }
-
-            if (String.IsNullOrEmpty(TextboxAuthor.Text))
-            {
-                errorList.Add("Author cannot be empty. <br/>");
-                result = false;
-            }
-
-            if (TextboxAuthor.Text.Length > 24)
-            {
-                errorList.Add("Title cannot be longer than 24 characters. <br/>");
                 result = false;
             }
 

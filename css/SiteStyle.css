@@ -1,4 +1,8 @@
-﻿.myTitle {
+﻿body, html {
+    height: 100%;
+}
+
+.myTitle {
     text-align: center;
 }
 
@@ -38,8 +42,7 @@ footer {
 .custom-select {
     width: 50%;
 }
-
-.bg::before {
+.bg {
     /* The image used */
     background-image: url('https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg');
     /* Full height */
@@ -47,11 +50,9 @@ footer {
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
-    background-size: auto;
-    position: absolute;
-    z-index: -1;
+    background-size: cover;
 }
-
+}
 .gridview {
     padding: 10px;
 }

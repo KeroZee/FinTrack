@@ -20,8 +20,11 @@
                     <asp:DropDownList ID="ddlCat" runat="server">
                         <asp:ListItem>-- Select --</asp:ListItem>
                         <asp:ListItem>Food</asp:ListItem>
-                        <asp:ListItem>Transport</asp:ListItem>
-                        <asp:ListItem>Miscellaneous</asp:ListItem>
+                        <asp:ListItem>Transportation</asp:ListItem>
+                        <asp:ListItem>Housing</asp:ListItem>
+                        <asp:ListItem>Utilities</asp:ListItem>
+                        <asp:ListItem>Healthcare & Medical</asp:ListItem>
+                        <asp:ListItem>Debt Repayment</asp:ListItem> 
                     </asp:DropDownList>
                 </td>
             </tr>

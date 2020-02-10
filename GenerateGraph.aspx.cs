@@ -14,44 +14,42 @@ namespace FinTrack
 {
     public partial class GenerateGraph : System.Web.UI.Page
     {
+        Expense exp = new Expense();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                GetChartTypes();
                 GetChartData();
             }
         }
 
         private void GetChartData()
         {
-
+            DataTable dt = new DataTable();
             string cs = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             using (SqlConnection con = new SqlConnection(cs))
             {
-                SqlCommand cmd = new SqlCommand("Select price, date, category from Expense", con);
                 con.Open();
-                SqlDataReader rdr = cmd.ExecuteReader();
-                ExpenseChart.Series["ExpenseSeries"].XValueMember = "date";
-                ExpenseChart.Series["ExpenseSeries"].YValueMembers = "category";
-                ExpenseChart.DataSource = rdr;
-                ExpenseChart.DataBind();
+                SqlCommand cmd = new SqlCommand("Select category, sum(price) from Expense group by category", con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                con.Close();
             }
+            string[] x = new string[dt.Rows.Count];
+            int[] y = new int[dt.Rows.Count];
 
-        }
-        private void GetChartTypes()
-        {
-            foreach(int chartType in Enum.GetValues(typeof(SeriesChartType)))
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
-                ListItem li = new ListItem(Enum.GetName(typeof(SeriesChartType), chartType), chartType.ToString());
-                ddlGraphType.Items.Add(li);
+                x[i] = dt.Rows[i][0].ToString();
+                y[i] = Convert.ToInt16(dt.Rows[i][1].ToString());
             }
-        }
+            ExpenseChart.Series[0].Points.DataBindXY(x, y);
+            ExpenseChart.Series[0].ChartType = SeriesChartType.StackedColumn;
+            ChartArea chartArea = new ChartArea();
+            chartArea.AxisX.Title = "Category";
+            chartArea.AxisY.Title = "Cost";
 
-        protected void ddlGraphType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.ExpenseChart.Series["ExpenseSeries"].ChartType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), ddlGraphType.SelectedValue);
         }
     }
 }

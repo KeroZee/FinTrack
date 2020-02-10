@@ -16,28 +16,30 @@ namespace FinTrack.BLL
         public string Category { get; set; }
         public double Cost { get; set; }
         public DateTime Date { get; set; }
+        public string Email { get; set; }
 
         public Expense()
         {
         }
 
-        public Expense(int id, string description, string category, double cost, DateTime date)
+        public Expense(int id, string description, string category, double cost, DateTime date, string email)
         {
             Id = id;
             Description = description;
             Category = category;
             Cost = cost;
             Date = date;
+            Email = email;
         }
-        public List<Expense> GetAllExpense()
+        public List<Expense> GetAllExpense(string email)
         {
             ExpenseDAO dao = new ExpenseDAO();
-            return dao.SelectAll();
+            return dao.SelectAll(email);
         }
-        public int AddExpense()
+        public int AddExpense(string email)
         {
             ExpenseDAO dao = new ExpenseDAO();
-            int result = dao.Insert(this);
+            int result = dao.Insert(this, email);
             return result;
         }
         public int UpdateExpense()

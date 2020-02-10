@@ -15,6 +15,7 @@ namespace FinTrack
 {
     public partial class Track : System.Web.UI.Page
     {
+        Expense exp = new Expense();
         List<Expense> expList;
         List<Expense> dateRangeList;
         DateTime now = DateTime.Today;  
@@ -22,14 +23,17 @@ namespace FinTrack
         {
             if (!IsPostBack)
             {
+                if (Session["email"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
                 RefreshGridView();
             }
         }
 
         private void RefreshGridView()
         {
-            Expense exp = new Expense();
-            expList = exp.GetAllExpense();
+            expList = exp.GetAllExpense(Session["email"].ToString());
             gvExpense.Visible = true;
             gvExpense.DataSource = expList;
             gvExpense.DataBind();
@@ -37,17 +41,18 @@ namespace FinTrack
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            Expense exp = new Expense();
             if (ValidateInput())
             {
                 double cost = Convert.ToDouble(txtCost.Text);
-                exp = new Expense(exp.Id, txtDesc.Text, ddlCat.Text, cost, now.Date);
+                exp = new Expense(exp.Id, txtDesc.Text, ddlCat.Text, cost, now.Date, Session["email"].ToString());
 
-                int result = exp.AddExpense();
+                int result = exp.AddExpense(Session["email"].ToString());
                 if (result == 1)
                 {
                     lblError.Text = "Record added successfully!";
                     lblError.ForeColor = Color.Green;
+                    txtDesc.Text = "";
+                    txtCost.Text = "";
                     RefreshGridView();
                 }
                 else
@@ -87,12 +92,12 @@ namespace FinTrack
         protected void gvExpense_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridViewRow row = gvExpense.SelectedRow;
+            RefreshGridView();
             Session["SSID"] = row.Cells[0].Text;
             Session["SSCategory"] = row.Cells[1].Text;
             Session["SSDescription"] = row.Cells[2].Text;
             Session["SSCOst"] = row.Cells[3].Text;
             Response.Redirect("UpdateTrack.aspx");
-            //TODO : Redirect user to Update page to update whatever is needed.
         }
 
         protected void gvExpense_RowDeleting(object sender, GridViewDeleteEventArgs e)

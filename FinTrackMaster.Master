@@ -96,12 +96,9 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <br />
-    <br />
-    <br />
 </body>
 <!-- Footer -->
-<footer class="page-footer font-small blue" style="position: fixed;">
+<footer class="page-footer font-small blue" style="position:relative;">
     <!-- Copyright -->
     <div class="footer footer-copyright text-center py-3">
         © 2019 Copyright: FinTrack
