@@ -37,7 +37,7 @@ namespace FinTrack.DAL
                 int id = int.Parse(row["userid"].ToString());
                 string email = row["email"].ToString();
                 string password = row["password"].ToString();
-               //DateTime dob = Convert.ToDateTime(row["DOB"].ToString());
+                string dob = row["DOB"].ToString();
                 string fname = row["firstName"].ToString();
                 string lname = row["lastName"].ToString();
                 string bio = row["bio"].ToString();
@@ -47,10 +47,10 @@ namespace FinTrack.DAL
                 string language = row["language"].ToString();
                 string nickname = row["nickname"].ToString();
                 string acc_type = row["acc_type"].ToString();
-                //DateTime date_join = Convert.ToDateTime(row["date_join"].ToString());
+                string date_join = row["date_join"].ToString();
                 int question = int.Parse(row["question"].ToString());
 
-                Profiles obj = new Profiles(id, email, password, fname, lname, bio, avatar, country, phone, language, nickname, acc_type, question);
+                Profiles obj = new Profiles(id, email, password, fname, lname, bio, avatar, country, phone, language, nickname, acc_type, question,date_join, dob );
                 Profileslist.Add(obj);
             }
 
@@ -77,7 +77,7 @@ namespace FinTrack.DAL
                 DataRow row = ds.Tables[0].Rows[0];  // Sql command returns only one record
                 int id = int.Parse(row["userid"].ToString());
                 string password = row["password"].ToString();
-                //DateTime dob = Convert.ToDateTime(row["DOB"].ToString());
+                string dob = row["DOB"].ToString();
                 string fname = row["fname"].ToString();
                 string lname = row["lname"].ToString();
                 string bio = row["bio"].ToString();
@@ -87,10 +87,10 @@ namespace FinTrack.DAL
                 string language = row["language"].ToString();
                 string nickname = row["nickname"].ToString();
                 string acc_type = row["acc_type"].ToString();
-                //DateTime date_joined = Convert.ToDateTime(row["date_join"].ToString());
+                string date_joined = row["date_join"].ToString();
                 int question = int.Parse(row["question"].ToString());
 
-                Prof = new Profiles(id, email, password, fname, lname, bio, avatar, country, phone,language, nickname, acc_type, question);
+                Prof = new Profiles(id, email, password, fname, lname, bio, avatar, country, phone,language, nickname, acc_type, question, date_joined, dob);
             }
             else
             {
@@ -128,8 +128,8 @@ namespace FinTrack.DAL
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "INSERT INTO Profile (email, password, Avatar, fname, lname, bio, country, phone, language, nickname, question)" +
-                             "VALUES (@paraemail, @parapassword, @paraAvatar, @parafname, @paralname, @parabio, @paracountry, @paraphone, @paralanguage, @paranickname, @paraquestion)";
+            string sqlStmt = "INSERT INTO Profile (email, password, Avatar, fname, lname, bio, country, phone, language, nickname, question, acc_type, date_join)" +
+                             "VALUES (@paraemail, @parapassword, @paraAvatar, @parafname, @paralname, @parabio, @paracountry, @paraphone, @paralanguage, @paranickname, @paraquestion, @paraacc_type, @paradate_join)";
 
             int result = 0;    // Execute NonQuery return an integer value
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -146,7 +146,8 @@ namespace FinTrack.DAL
             sqlCmd.Parameters.AddWithValue("@paralanguage", Prof.Language);
             sqlCmd.Parameters.AddWithValue("@paranickname", Prof.Nickname);
             sqlCmd.Parameters.AddWithValue("@paraquestion", Prof.Question);
-            //sqlCmd.Parameters.AddWithValue("@paradatejoined", Prof.Date_join);
+            sqlCmd.Parameters.AddWithValue("@paraacc_type", Prof.Acc_type);
+            sqlCmd.Parameters.AddWithValue("@paradate_join", Prof.Date_join);
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
 
@@ -154,13 +155,13 @@ namespace FinTrack.DAL
 
             return result;
         }
-        public int UpdateById(string email, string fname, string lname, string bio, string country, string phone, string language, string nickname)
+        public int UpdateById(string email, string fname, string lname, string bio, string country, string phone, string language, string nickname, string dob, string avatar)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "UPDATE Profile SET fname = @parafname, lname = @paralname, bio = @parabio, country = @paracountry," +
-                "phone = @paraphone, language = @paralanguage, nickname = @paranickname WHERE email = @paraemail";
+            string sqlStmt = "UPDATE Profile SET fname = @parafname, lname = @paralname, bio = @parabio, country = @paracountry, DOB = @paradob, " +
+                "phone = @paraphone, language = @paralanguage, nickname = @paranickname, Avatar = @paraimage WHERE email = @paraemail";
 
             int result = 0;
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -173,6 +174,8 @@ namespace FinTrack.DAL
             sqlCmd.Parameters.AddWithValue("@paraphone", phone);
             sqlCmd.Parameters.AddWithValue("@paralanguage", language);
             sqlCmd.Parameters.AddWithValue("@paranickname", nickname);
+            sqlCmd.Parameters.AddWithValue("@paradob", dob);
+            sqlCmd.Parameters.AddWithValue("@paraimage", avatar);
 
             myConn.Open();
             result = sqlCmd.ExecuteNonQuery();
@@ -180,7 +183,30 @@ namespace FinTrack.DAL
 
             return result;
         }
+        
+        public int CountQuestionsById(string accid)
+        {
+            int count = 0;
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+            string sqlStmt = "SELECT COUNT(*) FROM POST WHERE accountId= @paraAccId ";
 
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+            sqlCmd.Parameters.AddWithValue("@paraAccId", accid.Trim());
+
+            myConn.Open();
+            if (sqlStmt == null)
+            {
+                count = 0;
+            }
+            else
+            {
+                count = Convert.ToInt16(sqlCmd.ExecuteScalar());
+            }
+            myConn.Close();
+            return count;
+
+        }
 
     }
 }
