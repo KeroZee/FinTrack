@@ -11,7 +11,7 @@ namespace FinTrack.BLL
         public int ID { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }   
-        //public DateTime DOB { get; set; }
+        public string DOB { get; set; }
         public string Fname { get; set; }
         public string Lname { get; set; }
         public string Bio { get; set; }
@@ -21,7 +21,7 @@ namespace FinTrack.BLL
         public string Language { get; set; }
         public string Nickname { get; set; }
         public string Acc_type { get; set; }
-        //public DateTime Date_join { get; set; }
+        public string Date_join { get; set; }
         public int Question { get; set; }
         
 
@@ -31,7 +31,7 @@ namespace FinTrack.BLL
 
         }
 
-        public Profiles(int id, string email, string password,  string fname, string lname, string bio,  string avatar, string country, string phone, string language, string nickname, string acc_type, int question)
+        public Profiles(int id, string email, string password,  string fname, string lname, string bio,  string avatar, string country, string phone, string language, string nickname, string acc_type, int question, string date_joined, string dob)
         {
             ID = id;
             Email = email;
@@ -39,14 +39,14 @@ namespace FinTrack.BLL
             Fname = fname;
             Lname = lname;
             Bio = bio;
-            //DOB = dob;
+            DOB = dob;
             Avatar = avatar;
             Country = country;
             Phone = phone;
             Language = language;
             Nickname = nickname;
             Acc_type = acc_type;
-            //Date_join = date_joined;
+            Date_join = date_joined;
             Question = question;
 
         }
@@ -74,11 +74,17 @@ namespace FinTrack.BLL
 
         }
 
-        public int UpdateProfile(string email, string fname, string lname, string bio, string country, string phone, string language, string nickname)
+        public int UpdateProfile(string email, string fname, string lname, string bio, string country, string phone, string language, string nickname, string dob, string image)
         {
             ProfileDAO dao = new ProfileDAO();
-            return dao.UpdateById(email, fname, lname, bio, country, phone, language, nickname);
+            return dao.UpdateById(email, fname, lname, bio, country, phone, language, nickname, dob, image );
         }
+
+        //public Post GetPostCountById(string accid)
+        //{
+        //     ProfileDAO DAO = new ProfileDAO();
+        //    return DAO.CountQuestionsById(accid);
+        //}
         
     }
    
