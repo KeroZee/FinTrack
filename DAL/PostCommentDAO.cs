@@ -96,6 +96,46 @@ namespace FinTrack.DAL
 
             return result;
         }
+        public int UpdateLikes(string postid)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+
+            string sqlStmt = "UPDATE PostComments SET likes = likes + 1 WHERE id = @paraid";
+
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraid", postid);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+            myConn.Close();
+
+            return result;
+        }
+        public int UpdateDislikes(string postid)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+
+            string sqlStmt = "UPDATE PostComments SET dislikes = dislikes + 1 WHERE id = @paraid";
+
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraid", postid);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+            myConn.Close();
+
+            return result;
+        }
         public int Delete(string id)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;

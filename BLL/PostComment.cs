@@ -50,6 +50,16 @@ namespace FinTrack.BLL
             PostCommentDAO dao = new PostCommentDAO();
             return (dao.InsertComment(this));
         }
+        public int UpdateLikesById(string id)
+        {
+            PostCommentDAO dao = new PostCommentDAO();
+            return dao.UpdateLikes(id);
+        }
+        public int UpdateDislikesById(string id)
+        {
+            PostCommentDAO dao = new PostCommentDAO();
+            return dao.UpdateDislikes(id);
+        }
         public int DeleteCommentsById(string id)
         {
             PostCommentDAO dao = new PostCommentDAO();
