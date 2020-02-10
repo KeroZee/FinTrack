@@ -120,12 +120,12 @@ namespace FinTrack.DAL
             return result;
         }
 
-        public int UpdateById(string id, string title, string description, string author, string link, string lastupdated)
+        public int UpdateById(string id, string title, string description, string image, string author, string link, string lastupdated)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            string sqlStmt = "UPDATE Article SET title = @paratitle, description = @paradescription, author = @paraauthor, " +
+            string sqlStmt = "UPDATE Article SET title = @paratitle, description = @paradescription, image = @paraimage, author = @paraauthor, " +
                 "link = @paralink, lastupdated = @paralastupdated WHERE id = @paraid";
 
             int result = 0;    // Execute NonQuery return an integer value
@@ -134,6 +134,7 @@ namespace FinTrack.DAL
             sqlCmd.Parameters.AddWithValue("@paraid", id);
             sqlCmd.Parameters.AddWithValue("@paratitle", title);
             sqlCmd.Parameters.AddWithValue("@paradescription", description);
+            sqlCmd.Parameters.AddWithValue("@paraimage", image);
             sqlCmd.Parameters.AddWithValue("@paraauthor", author);
             sqlCmd.Parameters.AddWithValue("@paralink", link);
             sqlCmd.Parameters.AddWithValue("@paralastupdated", lastupdated);
@@ -158,6 +159,27 @@ namespace FinTrack.DAL
 
             sqlCmd.Parameters.AddWithValue("@paraid", id);
             sqlCmd.Parameters.AddWithValue("@paradeleted", deleted);
+
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+            myConn.Close();
+
+            return result;
+        }
+
+        public int UpdateViewsById(string id, int views)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            string sqlStmt = "UPDATE Article SET views = @paraviews WHERE id = @paraid";
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraid", id);
+            sqlCmd.Parameters.AddWithValue("@paraviews", views);
 
 
             myConn.Open();

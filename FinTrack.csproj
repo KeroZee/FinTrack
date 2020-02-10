@@ -83,6 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddProfile.aspx" />
     <Content Include="AdminSearch.aspx" />
     <Content Include="App_Data\FinTrackDB.mdf" />
     <Content Include="App_Data\FinTrackDB_log.ldf">
@@ -175,8 +176,10 @@
     <Content Include="Learn.aspx" />
     <Content Include="LearnAdmin.aspx" />
     <Content Include="LearnAdminAdd.aspx" />
+    <Content Include="LearnAdminEdit.aspx" />
     <Content Include="LearnDetailed.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Logout.aspx" />
     <Content Include="Mailbox.png" />
     <Content Include="Profile.aspx" />
     <Content Include="Register.aspx" />
@@ -252,6 +255,13 @@
     <Content Include="Scripts\popper-utils.js.map" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddProfile.aspx.cs">
+      <DependentUpon>AddProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddProfile.aspx.designer.cs">
+      <DependentUpon>AddProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminSearch.aspx.cs">
       <DependentUpon>AdminSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -298,8 +308,10 @@
     <Compile Include="BLL\Article.cs" />
     <Compile Include="BLL\Expense.cs" />
     <Compile Include="BLL\Post.cs" />
+    <Compile Include="BLL\PostComment.cs" />
     <Compile Include="BLL\Profiles.cs" />
     <Compile Include="DAL\ArticleDAO.cs" />
+    <Compile Include="DAL\PostCommentDAO.cs" />
     <Compile Include="DAL\ExpenseDAO.cs" />
     <Compile Include="DAL\PostDAO.cs" />
     <Compile Include="DAL\ProfileDAO.cs" />
@@ -348,6 +360,13 @@
     <Compile Include="LearnAdminAdd.aspx.designer.cs">
       <DependentUpon>LearnAdminAdd.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LearnAdminEdit.aspx.cs">
+      <DependentUpon>LearnAdminEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LearnAdminEdit.aspx.designer.cs">
+      <DependentUpon>LearnAdminEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LearnDetailed.aspx.cs">
       <DependentUpon>LearnDetailed.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -361,6 +380,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>

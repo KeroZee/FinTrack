@@ -23,12 +23,24 @@ namespace FinTrack
                     LblDescription.Text = art.Description.ToString();
                     LblDatePosted.Text = art.DatePosted.ToString();
                     LblAuthor.Text = art.Author.ToString();
+                    LblLastUpdated.Text = art.LastUpdated.ToString();
+                    LblViews.Text = art.Views.ToString();
+                    Image.ImageUrl = art.Image.ToString();
+
+                    var url = art.Link.ToString();
+                    BtnLink.Attributes.Add("href", url);
+                    BtnLink.Attributes.Add("target", "_blank");
                 }
                 else
                 {
                     Response.Redirect("Learn.aspx");
                 }
             }
+        }
+
+        protected void BtnLink_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

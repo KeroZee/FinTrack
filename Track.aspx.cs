@@ -23,13 +23,17 @@ namespace FinTrack
         {
             if (!IsPostBack)
             {
+                if (Session["email"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
                 RefreshGridView();
             }
         }
 
         private void RefreshGridView()
         {
-            expList = exp.GetAllExpense();
+            expList = exp.GetAllExpense(Session["email"].ToString());
             gvExpense.Visible = true;
             gvExpense.DataSource = expList;
             gvExpense.DataBind();
@@ -40,9 +44,9 @@ namespace FinTrack
             if (ValidateInput())
             {
                 double cost = Convert.ToDouble(txtCost.Text);
-                exp = new Expense(exp.Id, txtDesc.Text, ddlCat.Text, cost, now.Date, exp.Email);
+                exp = new Expense(exp.Id, txtDesc.Text, ddlCat.Text, cost, now.Date, Session["email"].ToString());
 
-                int result = exp.AddExpense();
+                int result = exp.AddExpense(Session["email"].ToString());
                 if (result == 1)
                 {
                     lblError.Text = "Record added successfully!";

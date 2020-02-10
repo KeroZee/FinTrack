@@ -14,7 +14,7 @@ namespace FinTrack.DAL
 {
     public class ExpenseDAO
     {
-        public List<Expense> SelectAll()
+        public List<Expense> SelectAll(string email)
         {
             //Step 1 -  Define a connection to the database by getting
             //          the connection string from web.config
@@ -22,8 +22,10 @@ namespace FinTrack.DAL
             SqlConnection myConn = new SqlConnection(DBConnect);
 
             //Step 2 -  Create a DataAdapter to retrieve data from the database table
-            string sqlStmt = "Select * from Expense";
+            string sqlStmt = "Select * from Expense where email = @paraEmail";
             SqlDataAdapter da = new SqlDataAdapter(sqlStmt, myConn);
+
+            da.SelectCommand.Parameters.AddWithValue("@paraEmail", email);
 
             //Step 3 -  Create a DataSet to store the data to be retrieved
             DataSet ds = new DataSet();
@@ -42,8 +44,8 @@ namespace FinTrack.DAL
                 DateTime DatePosted = Convert.ToDateTime(row["date"].ToString());
                 string expenseCategory = row["category"].ToString();
                 double expenseCost = Convert.ToDouble(row["price"].ToString());
-                string email = row["email"].ToString();
-                Expense obj = new Expense(expenseId, description, expenseCategory, expenseCost, DatePosted, email);
+                string expenseEmail = row["email"].ToString();
+                Expense obj = new Expense(expenseId, description, expenseCategory, expenseCost, DatePosted, expenseEmail);
                 expenseList.Add(obj);
             }
 
@@ -84,7 +86,7 @@ namespace FinTrack.DAL
 
             return expenseList;
         }
-        public int Insert(Expense exp)
+        public int Insert(Expense exp, string email)
         {
             // Execute NonQuery return an integer value
             int result = 0;
@@ -97,8 +99,8 @@ namespace FinTrack.DAL
 
             // Step 2 - Instantiate SqlCommand instance to add record 
             //          with INSERT statement
-            string sqlStmt = "INSERT INTO Expense (description, category, price, date) " +
-                "VALUES (@paraDesc, @paraCat, @paraCost, @paraDate)";
+            string sqlStmt = "INSERT INTO Expense (description, category, price, date, email) " +
+                "VALUES (@paraDesc, @paraCat, @paraCost, @paraDate, @paraEmail)";
             sqlCmd = new SqlCommand(sqlStmt, myConn);
 
             // Step 3 : Add each parameterised variable with value
@@ -107,7 +109,8 @@ namespace FinTrack.DAL
             sqlCmd.Parameters.AddWithValue("@paraDesc", exp.Description);
             sqlCmd.Parameters.AddWithValue("@paraCat", exp.Category);
             sqlCmd.Parameters.AddWithValue("@paraCost", exp.Cost);
-            sqlCmd.Parameters.AddWithValue("@paraDate", exp.Date.ToShortDateString());
+            sqlCmd.Parameters.AddWithValue("@paraDate", exp.Date);
+            sqlCmd.Parameters.AddWithValue("@paraEmail", email);
 
             // Step 4 Open connection the execute NonQuery of sql command   
             myConn.Open();

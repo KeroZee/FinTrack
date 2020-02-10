@@ -11,91 +11,196 @@ namespace FinTrack.DAL
 {
     public class PostDAO
     {
-        public List<Post> SelectAll()
+        public string Autoincrement()
         {
+            int count = 0;
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
-            SqlConnection myConn = new SqlConnection(DBConnect);
-
-            String sqlstmt = "Select * from Post";
-            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
-
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-
-
-            List<Post> List = new List<Post>();
-            int rec_cnt = ds.Tables[0].Rows.Count;  
-            if (rec_cnt < 1)
+            SqlConnection con = new SqlConnection(DBConnect);
+            string str = "SELECT TOP 1 id FROM Post ORDER BY Id DESC;";
+            SqlCommand com = new SqlCommand(str, con);
+            con.Open();
+            if (str == null)
             {
-                List = null;
+                count = 1;
             }
             else
             {
-                foreach (DataRow row in ds.Tables[0].Rows)
-                {
-
-                    string id = row["id"].ToString();
-                    string category = row["category"].ToString();
-                    string title = row["title"].ToString();
-                    string content = row["content"].ToString();
-                    int likes = int.Parse(row["likes"].ToString());
-                    int dislikes = int.Parse(row["dislikes"].ToString());
-                    int comments = int.Parse(row["comments"].ToString());
-                    string accountid = row["accountId"].ToString();
-                    string dateposted = Convert.ToDateTime(row["datePosted"]).ToString("d/M/yyyy");
-                    string username = row["Username"].ToString();
-                    Post obj = new Post(id, category, title, content, likes, dislikes, comments, dateposted, accountid, username);
-                    List.Add(obj);
-                }
-              
-                
+                count = Convert.ToInt16(com.ExecuteScalar()) + 1;
             }
-            return List;
+            con.Close();
+            return count.ToString();
         }
-        public List<Post> Search(string search)
+        // When dropdown list is all category and popular, recent and oldest
+        public DataTable SelectAllPopular()
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+            String sqlstmt = "Select * from Post Order By likes DESC";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            var dt = new DataTable();
+            da.Fill(dt);
+            myConn.Close();
+            return dt;
+        }
+        public DataTable SelectAllRecent()
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+            String sqlstmt = "Select * from Post Order By id DESC";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            var dt = new DataTable();
+            da.Fill(dt);
+            myConn.Close();
+            return dt;
+        }
+        public DataTable SelectAllOldest()
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+            String sqlstmt = "Select * from Post Order By id";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            var dt = new DataTable();
+            da.Fill(dt);
+            myConn.Close();
+            return dt;
+        }
+        
+        // When dropdown list is sorted by category and popular, recent and oldest
+        public DataTable CategorySortPopular(string cate)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
 
-            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%';";
+            String sqlstmt = "SELECT * FROM Post WHERE category = @paraCate Order By likes DESC";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraCate", cate);
+
+            var dt = new DataTable();
+            da.Fill(dt);
+            myConn.Close();
+            return dt;
+
+        }
+        public DataTable CategorySortRecent(string cate)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            String sqlstmt = "SELECT * FROM Post WHERE category = @paraCate Order By id DESC";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraCate", cate);
+
+            var dt = new DataTable();
+            da.Fill(dt);
+            myConn.Close();
+            return dt;
+
+        }
+        public DataTable CategorySortOldest(string cate)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            String sqlstmt = "SELECT * FROM Post WHERE category = @paraCate Order By id";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraCate", cate);
+
+            var dt = new DataTable();
+            da.Fill(dt);
+            myConn.Close();
+            return dt;
+
+        }
+        //Sorting for search
+        public DataTable SearchPopular(string search)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%' Order By likes DESC";
             SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
             da.SelectCommand.Parameters.AddWithValue("@paraSearch", search);
 
-            DataSet ds = new DataSet();
-            da.Fill(ds);
+            var dt = new DataTable();
+            da.Fill(dt);
+            myConn.Close();
+            return dt;
+        }
+        public DataTable SearchRecent(string search)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
 
+            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%' Order By id DESC";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraSearch", search);
 
-            List<Post> List = new List<Post>();
-            int rec_cnt = ds.Tables[0].Rows.Count;
-            if (rec_cnt < 1)
-            {
-                List = null;
-            }
-            else
-            {
-                foreach (DataRow row in ds.Tables[0].Rows)
-                {
+            var dt = new DataTable();
+            da.Fill(dt);
+            myConn.Close();
+            return dt;
+        }
+        public DataTable SearchOldest(string search)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
 
-                    string id = row["id"].ToString();
-                    string category = row["category"].ToString();
-                    string title = row["title"].ToString();
-                    string content = row["content"].ToString();
-                    int likes = int.Parse(row["likes"].ToString());
-                    int dislikes = int.Parse(row["dislikes"].ToString());
-                    int comments = int.Parse(row["comments"].ToString());
-                    string accountid = row["accountId"].ToString();
-                    string dateposted = Convert.ToDateTime(row["datePosted"]).ToString("d/M/yyyy");
-                    string username = row["Username"].ToString();
-                    Post obj = new Post(id, category, title, content, likes, dislikes, comments, dateposted, accountid, username);
-                    List.Add(obj);
-                }
+            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%' Order By id";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraSearch", search);
 
+            var dt = new DataTable();
+            da.Fill(dt);
+            myConn.Close();
+            return dt;
+        }
+        public DataTable SearchPopularCategory(string search, string cate)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
 
-            }
-            return List;
+            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%' and category = @paraCate Order By likes DESC";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraSearch", search);
+            da.SelectCommand.Parameters.AddWithValue("@paraCate", cate);
+
+            var dt = new DataTable();
+            da.Fill(dt);
+            myConn.Close();
+            return dt;
+        }
+        public DataTable SearchRecentCategory(string search, string cate)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%' and category = @paraCate Order By id DESC";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraSearch", search);
+            da.SelectCommand.Parameters.AddWithValue("@paraCate", cate);
+
+            var dt = new DataTable();
+            da.Fill(dt);
+            myConn.Close();
+            return dt;
+        }
+        public DataTable SearchOldestCategory(string search, string cate)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            String sqlstmt = "SELECT * FROM Post WHERE title LIKE '%' + @paraSearch + '%' and category = @paraCate Order By id";
+            SqlDataAdapter da = new SqlDataAdapter(sqlstmt, myConn);
+            da.SelectCommand.Parameters.AddWithValue("@paraSearch", search);
+            da.SelectCommand.Parameters.AddWithValue("@paraCate", cate);
+
+            var dt = new DataTable();
+            da.Fill(dt);
+            myConn.Close();
+            return dt;
         }
 
-            public Post SelectById(string postid)
+        public Post SelectById(string postid)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             SqlConnection myConn = new SqlConnection(DBConnect);
@@ -123,10 +228,12 @@ namespace FinTrack.DAL
                 string accountid = row["accountId"].ToString();
                 string dateposted = Convert.ToDateTime(row["datePosted"]).ToString("d/M/yyyy");
                 string username = row["Username"].ToString();
-                post = new Post(id, category, title, content, likes, dislikes, comments, dateposted, accountid, username);
+                string approved = row["Approved"].ToString();
+                post = new Post(id, category, title, content, likes, dislikes, comments, dateposted, accountid, username, approved);
             }
             return post;
         }
+
         public int Insert(Post post)
         {
             string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
@@ -174,6 +281,90 @@ namespace FinTrack.DAL
             myConn.Close();
 
             return result;
+        }
+
+        public int UpdateComments(string postid)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+
+            string sqlStmt = "UPDATE Post SET comments = @paracomments WHERE id = @paraid";
+
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraid", postid);
+            sqlCmd.Parameters.AddWithValue("@paracomments", GetNumberOfComments(postid));
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+            myConn.Close();
+
+            return result;
+        }
+        public int UpdateLikes(string postid)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+
+            string sqlStmt = "UPDATE Post SET likes = likes + 1 WHERE id = @paraid";
+
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraid", postid);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+            myConn.Close();
+
+            return result;
+        }
+
+        public int UpdateDislikes(string postid)
+        {
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+
+            string sqlStmt = "UPDATE Post SET dislikes = dislikes + 1 WHERE id = @paraid";
+
+
+            int result = 0;    // Execute NonQuery return an integer value
+            SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            sqlCmd.Parameters.AddWithValue("@paraid", postid);
+
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+            myConn.Close();
+
+            return result;
+        }
+
+        public int GetNumberOfComments(string postid)
+        {
+            int count = 0;
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection con = new SqlConnection(DBConnect);
+            string str = "SELECT COUNT(*) FROM PostComments WHERE postid = @paraid";
+            SqlCommand com = new SqlCommand(str, con);
+            com.Parameters.AddWithValue("@paraid", postid);
+            con.Open();
+            if (str == null)
+            {
+                count = 0;
+            }
+            else
+            {
+                count = Convert.ToInt16(com.ExecuteScalar());
+            }
+            con.Close();
+            return count;
         }
 
         public int DeleteById(string postid)

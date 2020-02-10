@@ -31,15 +31,15 @@ namespace FinTrack.BLL
             Date = date;
             Email = email;
         }
-        public List<Expense> GetAllExpense()
+        public List<Expense> GetAllExpense(string email)
         {
             ExpenseDAO dao = new ExpenseDAO();
-            return dao.SelectAll();
+            return dao.SelectAll(email);
         }
-        public int AddExpense()
+        public int AddExpense(string email)
         {
             ExpenseDAO dao = new ExpenseDAO();
-            int result = dao.Insert(this);
+            int result = dao.Insert(this, email);
             return result;
         }
         public int UpdateExpense()
