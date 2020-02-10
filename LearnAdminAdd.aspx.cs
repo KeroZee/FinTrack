@@ -11,9 +11,33 @@ namespace FinTrack
 {
     public partial class LearnAdminAdd : System.Web.UI.Page
     {
+        public Boolean adminaccess = false;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if (Session["email"] != null)
+                {
+                    String email = Session["email"].ToString();
+                    Profiles prof = new Profiles();
+                    prof = prof.GetProfileById(email);
+                    var acctype = prof.Acc_type.ToString();
 
+                    if (acctype == "Admin")
+                    {
+                        adminaccess = true;
+                    }
+                    else
+                    {
+                        adminaccess = false;
+                        Response.Redirect("Learn.aspx");
+                    }
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
+            }
         }
 
         protected void ButtonSubmit_Click(object sender, EventArgs e)
@@ -29,7 +53,12 @@ namespace FinTrack
                 var dateAndTime = DateTime.Now;
                 String lastupdated = dateAndTime.ToShortDateString();
                 String dateposted = dateAndTime.ToShortDateString();
-                String author = TextboxAuthor.Text.ToString();
+
+                String email = Session["email"].ToString();
+                Profiles prof = new Profiles();
+                prof = prof.GetProfileById(email);
+                String author = prof.Fname.ToString();
+
                 String link = TextboxLink.Text.ToString();
                 Boolean deleted = false;
 
@@ -66,18 +95,6 @@ namespace FinTrack
             if (TextboxTitle.Text.Length > 40)
             {
                 errorList.Add("Title cannot be longer than 40 characters. <br/>");
-                result = false;
-            }
-
-            if (String.IsNullOrEmpty(TextboxAuthor.Text))
-            {
-                errorList.Add("Author cannot be empty. <br/>");
-                result = false;
-            }
-
-            if (TextboxAuthor.Text.Length > 24)
-            {
-                errorList.Add("Title cannot be longer than 24 characters. <br/>");
                 result = false;
             }
 

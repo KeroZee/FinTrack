@@ -21,12 +21,6 @@
                 </div>
 
                 <div class="mt-2">
-                    <asp:Label ID="Label1" class="float-left text-muted" runat="server" Text="Author: "></asp:Label>
-                    <br />
-                    <asp:TextBox ID="TextboxAuthor" class="form-control" runat="server"></asp:TextBox>
-                </div>
-
-                <div class="mt-2">
                     <asp:Label ID="Label2" class="float-left text-muted" runat="server" Text="Description: "></asp:Label>
                     <br />
                     <asp:TextBox ID="TextboxDescription" class="form-control" textMode="Multiline" rows="7"  runat="server"></asp:TextBox>
