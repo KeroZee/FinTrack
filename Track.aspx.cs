@@ -18,6 +18,7 @@ namespace FinTrack
         Expense exp = new Expense();
         List<Expense> expList;
         List<Expense> dateRangeList;
+        public Boolean adminaccess = false;
         DateTime now = DateTime.Today;  
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,6 +27,19 @@ namespace FinTrack
                 if (Session["email"] == null)
                 {
                     Response.Redirect("Login.aspx");
+                }
+                String email = Session["email"].ToString();
+                Profiles prof = new Profiles();
+                prof = prof.GetProfileById(email);
+                var acctype = prof.Acc_type.ToString();
+
+                if (acctype == "Admin")
+                {
+                    adminaccess = true;
+                }
+                else
+                {
+                    adminaccess = false;
                 }
                 RefreshGridView();
             }
@@ -131,6 +145,11 @@ namespace FinTrack
         protected void btnGenerateGraph_Click(object sender, EventArgs e)
         {
             Response.Redirect("GenerateGraph.aspx");
+        }
+
+        protected void Unnamed1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminSearch.aspx");
         }
     }
 }

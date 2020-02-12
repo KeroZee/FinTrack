@@ -1,55 +1,61 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FinTrackMaster.Master" AutoEventWireup="true" CodeBehind="UpdateTrack.aspx.cs" Inherits="FinTrack.UpdateTrack" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <form id="form1" runat="server">
-        <table class="w-100" style="width: 80%; height: 115px">
-            <tr>
-                <td style="width: 91px">ID:</td>
-                <td style="width: 1396px">
-                    <asp:TextBox ID="txtID" runat="server" ReadOnly="True" Width="39px"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 91px; height: 26px">Description:</td>
-                <td style="width: 1396px; height: 26px">
-                    <asp:TextBox ID="txtUpdateDesc" runat="server"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 91px">Category:</td>
-                <td style="width: 1396px">
-                    <asp:DropDownList ID="ddlCat" runat="server">
-                        <asp:ListItem>-- Select --</asp:ListItem>
+    <div style="background-image: url(https://i.redd.it/34woefmjsl911.jpg)">
+        <form id="form1" runat="server">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-sm-3">
+                </div>
+                <div class="card col-md-4 col-sm-6">
+                    <h1 align="center">Update Your Expense!</h1>
+                    <br />
+                    <div>
+                        <label for="txtID">ID</label>
+                        <asp:TextBox ID="txtID" class="form-control mb-4" runat="server" ForeColor="Silver" ReadOnly="True"></asp:TextBox>
+                    </div>
+                    <label>Category</label>
+                    <asp:DropDownList ID="ddlCat" class="form-control mb-4" runat="server">
+                        <asp:ListItem Value="-1">-- Select --</asp:ListItem>
                         <asp:ListItem>Food</asp:ListItem>
                         <asp:ListItem>Transportation</asp:ListItem>
                         <asp:ListItem>Housing</asp:ListItem>
                         <asp:ListItem>Utilities</asp:ListItem>
                         <asp:ListItem>Healthcare & Medical</asp:ListItem>
-                        <asp:ListItem>Debt Repayment</asp:ListItem> 
+                        <asp:ListItem>Debt Repayment</asp:ListItem>
                     </asp:DropDownList>
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 91px">Cost:</td>
-                <td style="width: 1396px">
-                    <asp:TextBox ID="txtUpdateCost" runat="server" style="margin-top: 36"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 91px">&nbsp;</td>
-                <td style="width: 1396px">&nbsp;</td>
-            </tr>
-            <tr>
-                <td style="width: 91px">&nbsp;</td>
-                <td style="width: 1396px">
-                    <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="Update" />
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 91px">&nbsp;</td>
-                <td style="width: 1396px">
-                    <asp:Label ID="LblMsg" runat="server"></asp:Label>
-                </td>
-            </tr>
-        </table>
-    </form>
+                    <div>
+                        <label for="DescLabel">Description of Expense</label>
+                        <asp:TextBox ID="txtUpdateDesc" class="form-control mb-4" runat="server" rows="4" TextMode="MultiLine"></asp:TextBox>
+                    </div>
+                    <div>
+                        <label for="txtUpdateCost">Cost of Expense</label>
+                        <asp:TextBox ID="txtUpdateCost" class="form-control mb-4" runat="server"></asp:TextBox>
+                    </div>
+                    <asp:Label ID="LblMsg" runat="server" BackColor="White" BorderColor="Red" ForeColor="Red"></asp:Label>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                            <asp:Button ID="btnUpdate" class="btn btn-outline-success waves-effect mb-2 align-self-md-center" runat="server" placeholder="Add Expense" OnClick="btnUpdate_Click" Text="Save" />
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-3">
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+        </form>
+    </div>
 </asp:Content>

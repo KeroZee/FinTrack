@@ -4,46 +4,59 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <body>
+    <body style="background-image: url(https://i.redd.it/34woefmjsl911.jpg)">
         <form id="form1" runat="server" class="text-center border border-light p-5">
-            <h1>Your Expense Tracker!</h1>
-            <br />
             <div class="row">
-                <div class="col-md-4 col-sm-3">
+                <div class="col-2">
+
                 </div>
-                <div class="col-md-4 col-sm-6">
-                    <label id="CatLabel">Category</label>
-                    <asp:DropDownList ID="ddlCat" class="form-control mb-4" runat="server">
-                        <asp:ListItem Value="-1">-- Select --</asp:ListItem>
-                        <asp:ListItem>Food</asp:ListItem>
-                        <asp:ListItem>Transportation</asp:ListItem>
-                        <asp:ListItem>Housing</asp:ListItem>
-                        <asp:ListItem>Utilities</asp:ListItem>
-                        <asp:ListItem>Healthcare & Medical</asp:ListItem>
-                        <asp:ListItem>Debt Repayment</asp:ListItem>
-                    </asp:DropDownList>
-                    <div class="md-form md-outline">
-                        <label id="CatLabel" for="txtDesc">Description</label>
-                        <asp:TextBox ID="txtDesc" class="form-control mb-4" runat="server" rows="4" TextMode="MultiLine"></asp:TextBox>
-                    </div>
-                    <div class="md-form md-outline">
-                        <label id="CatLabel" for="txtCost">Cost</label>
-                        <asp:TextBox ID="txtCost" class="form-control mb-4" runat="server"></asp:TextBox>
-                    </div>
-                    <asp:Label ID="lblError" runat="server" BackColor="White" BorderColor="Red" ForeColor="Red"></asp:Label>
+                <div class="card col-8">
                     <br />
+                    <h1>Your Expense Tracker!</h1>
+                    <br />
+                    <asp:Button runat="server" Visible="<%#adminaccess %>" Text="Go To AdminSearch" class="btn btn-outline-success waves-effect mb-2 align-self-md-center" OnClick="Unnamed1_Click" />
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-sm-3">
                         </div>
-                        <div class="col-md-4">
-                            <asp:Button ID="btnSave" class="btn btn-outline-success waves-effect mb-2 align-self-md-center" runat="server" placeholder="Add Expense" OnClick="btnSave_Click" Text="Save" />
+                        <div class="col-md-4 col-sm-6">
+                            <label id="CatLabel">Category</label>
+                            <asp:DropDownList ID="ddlCat" class="form-control mb-4" runat="server">
+                                <asp:ListItem Value="-1">-- Select --</asp:ListItem>
+                                <asp:ListItem>Food</asp:ListItem>
+                                <asp:ListItem>Transportation</asp:ListItem>
+                                <asp:ListItem>Housing</asp:ListItem>
+                                <asp:ListItem>Utilities</asp:ListItem>
+                                <asp:ListItem>Healthcare & Medical</asp:ListItem>
+                                <asp:ListItem>Debt Repayment</asp:ListItem>
+                            </asp:DropDownList>
+                            <div class="md-form md-outline">
+                                <label id="DescLabel" for="txtDesc">Description</label>
+                                <asp:TextBox ID="txtDesc" class="form-control mb-4" runat="server" rows="4" TextMode="MultiLine"></asp:TextBox>
+                            </div>
+                            <div class="md-form md-outline">
+                                <label id="CataLael" for="txtCost">Cost</label>
+                                <asp:TextBox ID="txtCost" class="form-control mb-4" runat="server"></asp:TextBox>
+                            </div>
+                            <asp:Label ID="lblError" runat="server" BackColor="White" BorderColor="Red" ForeColor="Red"></asp:Label>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-4">
+                                    <asp:Button ID="btnSave" class="btn btn-outline-success waves-effect mb-2 align-self-md-center" runat="server" placeholder="Add Expense" OnClick="btnSave_Click" Text="Save" />
+                                </div>
+                                <br />
+                                <div class="col-md-4">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-sm-3">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-3">
-                </div>
+            </div>
+            <div class="col-2">
+
             </div>
             <br />
             <div class="row">
@@ -73,6 +86,7 @@
                                     <div class="col">
                                     </div>
                                     <div class="col">
+                                        <h2>Your Expenses</h2>
                                         <br />
                                         <asp:GridView ID="gvExpense" HorizontalAlign="Center" runat="server" AutoGenerateColumns="False" AllowSorting="True" OnRowDeleting="gvExpense_RowDeleting" OnRowEditing="gvExpense_RowEditing" OnRowUpdating="gvExpense_RowUpdating" OnSelectedIndexChanged="gvExpense_SelectedIndexChanged" Height="213px" Width="844px">
                                             <columns>

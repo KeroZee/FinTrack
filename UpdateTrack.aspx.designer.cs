@@ -31,15 +31,6 @@ namespace FinTrack {
         protected global::System.Web.UI.WebControls.TextBox txtID;
         
         /// <summary>
-        /// txtUpdateDesc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUpdateDesc;
-        
-        /// <summary>
         /// ddlCat control.
         /// </summary>
         /// <remarks>
@@ -47,6 +38,15 @@ namespace FinTrack {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCat;
+        
+        /// <summary>
+        /// txtUpdateDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUpdateDesc;
         
         /// <summary>
         /// txtUpdateCost control.
@@ -58,15 +58,6 @@ namespace FinTrack {
         protected global::System.Web.UI.WebControls.TextBox txtUpdateCost;
         
         /// <summary>
-        /// btnUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdate;
-        
-        /// <summary>
         /// LblMsg control.
         /// </summary>
         /// <remarks>
@@ -74,5 +65,14 @@ namespace FinTrack {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblMsg;
+        
+        /// <summary>
+        /// btnUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdate;
     }
 }
