@@ -15,9 +15,10 @@
             <asp:Label runat="server" id="Name" style="font-size:40px;" Text=""></asp:Label>
             
             </div>
-            
-            <asp:Button runat="server" Text="EDIT" style ="color:aqua;" class ="btn btn-link" OnClick="Unnamed1_Click"/>
-            <div id="info" class="mt-2">
+            <div class="ml-4">
+            <asp:Button runat="server" Text="EDIT" style ="color:aqua; " class ="btn btn-info" OnClick="Unnamed1_Click"/>
+            </div>
+            <div id="info" class="my-4">
                 <div class=" mr-5">
                 <ul style="list-style-type:none;">
                 <li><asp:Label runat="server" Text="" id="email" style="font-size:20px;"></asp:Label></li>
@@ -40,7 +41,9 @@
             <div class="col-md-6">
             <div class="card">
             <div class ="container">
-            <div class="mt-3">
+            <div class="mt-2">
+            <asp:Label runat="server" Text="Bio:"></asp:Label>
+                <br />
             <asp:TextBox runat="server" id="bio" MaxLength="100" ReadOnly="True" Rows="5" TextMode="MultiLine" placeholder="Bio" style="width:80%;"></asp:TextBox>
             </div> 
             <div class="mt-3">
@@ -50,7 +53,7 @@
             <asp:Label runat="server" Text="Label" id="acc_type" style="font-size:20px;"></asp:Label>
             </div>
             <div class="mt-3">
-                <asp:Label runat="server" id="Question" Text=""></asp:Label>
+                <asp:Label runat="server" id="Question" style="font-size:20px;" Text=""></asp:Label>
             </div>
             </div>  
                </div>

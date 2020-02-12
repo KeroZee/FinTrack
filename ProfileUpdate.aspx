@@ -47,7 +47,7 @@
         <div class="mt-2">
         <asp:Label runat="server" Text="Label">Date of Birth: </asp:Label>
         <br />
-        <asp:TextBox ID="tbDOB" runat="server" placeholder ="Date of Birth" style="width:70%;"></asp:TextBox>
+        <asp:TextBox ID="tbDOB" runat="server" placeholder ="Date of Birth" style="width:70%;" TextMode="Date"></asp:TextBox>
         
         </div>
         <div class="m-2">
