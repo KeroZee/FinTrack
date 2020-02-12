@@ -115,29 +115,59 @@ namespace FinTrack
         }
         protected void LbtnLike_Click(object sender, EventArgs e)
         {
+            if (Session["email"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }   
             LinkButton b = (LinkButton)sender;
 
             Post post = new Post();
             post.UpdateLikesById(Session["SId"].ToString());
             GetPosts();
         }
-        protected void LbtnToggle_Click(object sender, EventArgs e)
-        {
-            LinkButton b = (LinkButton)sender;
-            
-        }
-
         protected void LbtnDislike_Click(object sender, EventArgs e)
         {
+            if (Session["email"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             LinkButton b = (LinkButton)sender;
 
             Post post = new Post();
             post.UpdateDislikesById(Session["SId"].ToString());
             GetPosts();
         }
+        protected void LbtnCommLike_Click(object sender, EventArgs e)
+        {
+            if (Session["email"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            LinkButton b = (LinkButton)sender;
+
+            PostComment post = new PostComment();
+            post.UpdateLikesById(b.CommandName);
+            GetComments();
+        }
+        protected void LbtnCommDislike_Click(object sender, EventArgs e)
+        {
+            if (Session["email"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            LinkButton b = (LinkButton)sender;
+
+            PostComment post = new PostComment();
+            post.UpdateDislikesById(b.CommandName);
+            GetComments();
+        }
 
         protected void BtnDelete_Click(object sender, EventArgs e)
         {
+            if (Session["email"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             string id = Session["SId"].ToString();
             Post post = new Post();
             post.DeletePostById(id);
@@ -151,11 +181,19 @@ namespace FinTrack
 
         protected void BtnEdit_Click(object sender, EventArgs e)
         {
+            if (Session["email"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             Session["SId"] = Session["SId"].ToString();
             Response.Redirect("AskUpdate.aspx");
         }
         protected void BtnDeleteComm_Click(object sender, EventArgs e)
         {
+            if (Session["email"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             Post update = new Post();
             LinkButton b = (LinkButton)sender;
             PostComment postcomm = new PostComment();

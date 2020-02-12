@@ -54,9 +54,13 @@ namespace FinTrack
                 String cppassword = TextBoxCPassword.Text.ToString();
                 String fname = TextBoxFname.Text.ToString();
                 String lname = TextBoxLname.Text.ToString();
+                String acc_type = "User";
+                int question = 0;
+                var datenow = DateTime.Now;
+                String dateposted = datenow.ToShortDateString();
             
 
-                Profiles prof = new Profiles(-1, email, password, fname, lname, "",  "", "","", "", "" ,"" , 0);
+                Profiles prof = new Profiles(-1, email, password, fname, lname, "",  "", "","", "", "" ,acc_type ,question,dateposted,"");
                 int insCnt = prof.AddProfile();
                 if (insCnt == 1)
                 {

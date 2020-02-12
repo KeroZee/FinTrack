@@ -22,6 +22,15 @@ namespace FinTrack {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// imageshow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imageshow;
+        
+        /// <summary>
         /// Name control.
         /// </summary>
         /// <remarks>
@@ -103,12 +112,21 @@ namespace FinTrack {
         protected global::System.Web.UI.WebControls.Label nickname;
         
         /// <summary>
+        /// acc_type control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label acc_type;
+        
+        /// <summary>
         /// Question control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Question;
+        protected global::System.Web.UI.WebControls.Label Question;
     }
 }

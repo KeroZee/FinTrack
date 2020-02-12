@@ -13,6 +13,8 @@ namespace FinTrack
         protected void Page_Load(object sender, EventArgs e)
         {
             
+
+
             if (!IsPostBack) {
                 if(Session["email"] != null) { 
                     Profiles prof = new Profiles();
@@ -24,8 +26,18 @@ namespace FinTrack
                     nickname.Text = "Nickname: " + prof.Nickname;
                     Name.Text = prof.Fname + " " + prof.Lname;
                     bio.Text = prof.Bio;
-                    Question.Text = prof.Question.ToString();
+                    Question.Text ="Questions: " + prof.GetPostCountById(prof.ID.ToString()).ToString(); ;
+                    acc_type.Text = "Account type: " + prof.Acc_type.ToString();
+                    date_joined.Text = "Date Joined: " + prof.Date_join.ToString();
+                    dob.Text = "Date of Birth: " + prof.DOB.ToString();
+                    imageshow.ImageUrl = prof.Avatar.ToString();
 
+                    
+
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
                 }
 
             }

@@ -26,6 +26,8 @@ namespace FinTrack
                     tbLanguage.Text = prof.Language.ToString();
                     tbBio.Text = prof.Bio.ToString();
                     tbNickname.Text = prof.Nickname.ToString();
+                    tbDOB.Text = prof.DOB.ToString();
+                    tbImage.Text = prof.Avatar.ToString();
                 }
                 else
                 {
@@ -43,7 +45,7 @@ namespace FinTrack
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             Profiles prof = new Profiles();
-            prof.UpdateProfile(Session["email"].ToString(), tbFname.Text, tbLname.Text, tbBio.Text, tbCountry.Text, tbPhone.Text, tbLanguage.Text, tbNickname.Text);
+            prof.UpdateProfile(Session["email"].ToString(), tbFname.Text, tbLname.Text, tbBio.Text, tbCountry.Text, tbPhone.Text, tbLanguage.Text, tbNickname.Text, tbDOB.Text, tbImage.Text);
             Response.Redirect("Profile.aspx");
         }
 

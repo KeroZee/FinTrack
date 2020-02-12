@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FinTrackMaster.Master" AutoEventWireup="true" CodeBehind="AskPost.aspx.cs" Inherits="FinTrack.AskPost" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FinTrackMaster.Master" AutoEventWireup="true" CodeBehind="AskPost.aspx.cs" Inherits="FinTrack.AskPost" MaintainScrollPositionOnPostback="true"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <form id="form1" runat="server">
 <div class="card">
@@ -44,9 +44,11 @@
         <asp:Repeater ID="PostRepeater" runat="server">
              <itemtemplate>
                  <div class="card-body" id="usercomment"><%# Eval("content") %><br /><h5 class="card-text"><a href="#" class="usericon"><i class="fas fa-user"></i></a><a href="#" class="usertitle"><%# Eval("username") %></a> - posted on the <%# Eval("datePosted") %></h5> 
-                    <h5 class="card-text"><a href="#" class="ratingsicon"><i class="fas fa-thumbs-up"></i></a><%# Eval("likes") %> <a href="#" class="ratingsicon"><i class="fas fa-thumbs-down"></i></a><%# Eval("dislikes") %> 
+                    <h5 class="card-text">
+                        <asp:LinkButton ID="LbtnCommLike" CssClass="ratingsicon" CommandName='<%# Eval("id")%>' runat="server" OnClick="LbtnCommLike_Click"><i class="fas fa-thumbs-up"></i></asp:LinkButton><%# Eval("likes") %>
+                        <asp:LinkButton ID="LbtnCommDislike" CssClass="ratingsicon" CommandName='<%# Eval("id")%>' runat="server" OnClick="LbtnCommDislike_Click" ><i class="fas fa-thumbs-down"></i></asp:LinkButton><%# Eval("dislikes") %>
                     <div class="btn-group dropright" style="color:black; padding-left:8px;">
-                    <asp:LinkButton ID="LbtnToggle" runat="server" OnClick="LbtnToggle_Click" CommandName='<%# Eval("id")%>' data-toggle="dropdown"  aria-expanded="false">
+                    <asp:LinkButton ID="LbtnToggle" runat="server" CommandName='<%# Eval("id")%>' data-toggle="dropdown"  aria-expanded="false">
                         <i class="fa fa-ellipsis-h"></i>
                     </asp:LinkButton>
                     <div class="dropdown-menu">

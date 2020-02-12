@@ -47,12 +47,12 @@ namespace FinTrack
                 if(Count == 1) {
                 
                     Session["email"] = exampleInputEmail1.Text;
-                    Response.Redirect("Profile.aspx"); 
+                    Response.Redirect("HomePage.aspx"); 
                 }
 
                 else
                 {
-                    errorList.Add("Please try again, credentials are wrong");
+                    errorList.Add("User doesn't exist or information is wrong, try again");
                 }
             }
         }

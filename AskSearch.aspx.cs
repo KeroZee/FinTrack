@@ -226,6 +226,7 @@ namespace FinTrack
             post.UpdateLikesById(b.CommandName.ToString());
             CurrentPage = 0;
             FilterSystem();
+            b.Enabled = false;
         }
 
         protected void LbtnDislike_Click(object sender, EventArgs e)

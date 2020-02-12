@@ -23,20 +23,7 @@ namespace FinTrack
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            String fname = tbFname.Text.ToString();
-            String lname = tbLname.Text.ToString();
-            String country = tbCountry.Text.ToString();
-            String phone = tbPhone.Text.ToString();
-            String language = tbLanguage.Text.ToString();
-            String bio = tbBio.Text.ToString();
-            String nickname = tbNickname.Text.ToString();
-
-            Profiles prof = new Profiles(-1 , "", "", fname, lname, bio, "", country, phone, language, nickname, "", 1);
-            int count = prof.AddProfile();
-            if(count == 1)
-            {
-                Response.Redirect("Profile.aspx");
-            }
+            
         }
     }
 }
